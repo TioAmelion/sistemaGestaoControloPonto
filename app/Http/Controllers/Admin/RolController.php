@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Menu;
-use App\Http\Requests\ValidacaoMenu;
+use App\Models\Admin\Rol;
+use App\Http\Requests\ValidacaoRol;
 
-class MenuController extends Controller
+class RolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //return view('admin.menu.index');
-        $menu = Menu::getMenu();
-        dd($menu);
+        $dados = Rol::orderby('id')->get();
+        return view('admin.rol.index', compact('dados'));
+        //return view('admin.rol.index', '$dados');
     }
 
     /**
@@ -28,7 +28,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menu.create');
+        return view('admin.rol.create');
     }
 
     /**
@@ -37,11 +37,10 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidacaoMenu $request)
+    public function store(ValidacaoRol $request)
     {
-        //dd($request->all());
-        Menu::create($request->all());
-        return redirect('admin/menu/criar')->with('mensagem', 'Menu salvo com sucesso');
+        Rol::create($request->all());
+        return redirect('admin/rol/criar')->with('mensagem', 'Rol salvo com sucesso');
     }
 
     /**
@@ -63,7 +62,10 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$dados = Rol::findOrFail($id); |se o id não existe mostra a pagina de erro 404
+        $dados = Rol::find($id); // |se o id existe mostra null
+        //dd($dados);
+        return view('admin.rol.update', compact('dados'));
     }
 
     /**
@@ -73,9 +75,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidacaoRol $request, $id)
     {
-        //
+        Rol::findOrFail($id)->update($request->all());
+        return redirect('admin/rol')->with('mensagem', 'Rol atualizado');
     }
 
     /**
@@ -86,6 +89,10 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Roll::destroy($id)){
+            return redirect('admin/rol');
+        }else{
+            abort(404);
+        }
     }
 }
