@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Rol;
-use App\Http\Requests\ValidacaoRol;
+use App\Models\Admin\Funcionario;
 
-class RolController extends Controller
+class RegistrarPontoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        $dados = Rol::orderby('id')->get();
-        return view('admin.rol.index', compact('dados'));
-        //return view('admin.rol.index', '$dados');
+        $dados = funcionario::all();
+        return view('admin.ponto.index', compact('dados'));
     }
 
     /**
@@ -28,7 +26,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        return view('admin.rol.create');
+        //
     }
 
     /**
@@ -37,10 +35,9 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidacaoRol $request)
+    public function store(Request $request)
     {
-        Rol::create($request->all());
-        return redirect('admin/rol/criar')->with('mensagem', 'Rol salvo com sucesso');
+        //
     }
 
     /**
@@ -62,10 +59,7 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //$dados = Rol::findOrFail($id); |se o id não existe mostra a pagina de erro 404
-        $dados = Rol::find($id); // |se o id existe mostra null
-        //dd($dados);
-        return view('admin.rol.update', compact('dados'));
+        //
     }
 
     /**
@@ -75,10 +69,9 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ValidacaoRol $request, $id)
+    public function update(Request $request, $id)
     {
-        Rol::findOrFail($id)->update($request->all());
-        return redirect('admin/rol')->with('mensagem', 'Rol atualizado');
+        //
     }
 
     /**
@@ -89,10 +82,6 @@ class RolController extends Controller
      */
     public function destroy($id)
     {
-        if(Rol::destroy($id)){
-            return redirect('admin/rol');
-        }else{
-            abort(404);
-        }
+        //
     }
 }

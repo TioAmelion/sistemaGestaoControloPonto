@@ -4,7 +4,7 @@
 <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"></h3>
+                <h3 class="card-title">ytyeye</h3>
                 @include("admin/rol/form")
             </div>
             </div>

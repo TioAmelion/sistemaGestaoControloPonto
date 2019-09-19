@@ -29,9 +29,13 @@
                       <td>{{$p->id}}</td>
                       <td>{{$p->nome}}</td>
                       <td>
-                      	<a href="{{route('editar_rol', $p->id)}}">editar</a>
-                      	<form action="{{route('eliminar_rol', ['id'  => $p->id] )}}" method="POST" > @csrf @method("delete")
-                      		<button type="submit">excluir</button>
+                      	<a href="{{route('editar_rol', $p->id)}}">
+                      		<i class="fas fa-pen-square"></i>
+                      	</a>
+                      	<form action="{{route('eliminar_rol', ['id'  => $p->id] )}}" class="d-inline" method="POST" > 
+                      		@csrf @method("delete")
+                      		<button type="submit" class="btn-action-tabla tooltipc"><i class="fas fa-trash"></i>
+                      		</button>
                       	</form>
                       </td>
                       </tr>

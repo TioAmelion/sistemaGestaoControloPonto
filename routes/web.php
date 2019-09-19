@@ -39,6 +39,15 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::put('rol/{id}', 'RolController@update')->name('atualizar_rol');
 	Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
 
+	Route::get('menu_rol', 'MenuRolController@index')->name('menu_rol');
+	Route::get('menu_rol/salvar', 'MenuRolController@store')->name('menu_rol_salvar');
 
+	/*Registar funcionario */
+	Route::get('func', 'FuncionarioController@index')->name('funcionario');
+	Route::get('func/criar', 'FuncionarioController@create')->name('criar_func');
+	Route::post('func', 'FuncionarioController@store')->name('salvar_func');
 
+	/*Registar Ponto */
+	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('ponto');
+	Route::post('marcar_ponto', 'RegistrarPontoController@store')->name('marcar_ponto');
 });
