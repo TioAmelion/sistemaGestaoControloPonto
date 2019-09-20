@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistrarPonto extends Model
 {
-    protected = "registro";
-    protected $fillable = ['data', 'entrada', 'saida_a', 'entrada_a', 'saida'];
+    protected $table = "registro";
+    protected $fillable = ['id', 'func_id','data', 'entrada', 'saida_a', 'entrada_a', 'saida'];
     protected $guarded = ['id'];
 }

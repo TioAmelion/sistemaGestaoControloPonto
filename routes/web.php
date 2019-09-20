@@ -49,5 +49,8 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 
 	/*Registar Ponto */
 	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('ponto');
-	Route::post('marcar_ponto', 'RegistrarPontoController@store')->name('marcar_ponto');
+	Route::get('marcar_ponto/{id}', 'RegistrarPontoController@store')->name('salvar.ponto');
+	//Route::get('marcar_ponto/{id}', 'RegistrarPontoController@show')->name('mostrarId');
+
+	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('marcar.ponto');
 });

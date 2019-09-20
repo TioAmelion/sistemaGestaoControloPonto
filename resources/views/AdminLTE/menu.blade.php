@@ -36,7 +36,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('admin/marcar_ponto')}}" class="nav-link">
+                <a href="{{route('marcar.ponto')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Benfica</p>
                 </a>

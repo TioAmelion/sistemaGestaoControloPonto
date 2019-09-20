@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
+use App\Models\Admin\RegistrarPonto;
 
 class RegistrarPontoController extends Controller
 {
@@ -16,7 +17,7 @@ class RegistrarPontoController extends Controller
     public function index()
     {
         $dados = funcionario::all();
-        return view('admin.ponto.index', compact('dados'));
+       return view('admin.ponto.index', compact('dados'));
     }
 
     /**
@@ -35,9 +36,13 @@ class RegistrarPontoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $hora = time();
+        $data = date('y-m-d');
+
+        RegistrarPonto::create($request->all());
+   
     }
 
     /**
@@ -48,7 +53,9 @@ class RegistrarPontoController extends Controller
      */
     public function show($id)
     {
-        //
+        $dados = funcionario::find($id);
+        // return view('admin.ponto.index')->with('dados', $dados);
+        return $dados->id;
     }
 
     /**
