@@ -79,32 +79,32 @@
                 <section class="content">
       <div class="container-fluid" >
         
-            <h3 class="card-title">Cadastrar funcionario</h3>
+            <h3 class="card-title">Editar funcionario</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
               <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
-          <form role="form" action="{{route('salvar_func')}}" method="POST">
-          		@csrf
+          <form role="form" action="{{route('atualizar_fuc', ['id' => $dados->id])}}" method="POST">
+          		@csrf @method("put")
           <div class="card-body" >
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo" value="{{$dados->nome}}">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I">
+                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I"  value="{{$dados->num_bi}}">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1"></label>
-					    <select class="form-control" name="genero">
+					    <select class="form-control" name="genero" value="{{$dados->genero}}">
 					    	<option >Selecione o genero</option>
 					        <option value="M">M</option>
 					        <option value="F">F</option>
@@ -112,20 +112,20 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone">
+                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone" value="{{$dados->telefone}}">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1"></label>
-					    <select class="form-control" name="departamento">
+					    <select class="form-control" name="departamento" value="{{$dados->departamento}}">
 					    	<option>Selecione o departamento</option>
 					        <option value="Gestão da informação">Gestão da informação</option>
 					    </select>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1"></label>
-					    <select class="form-control" name="funcao">
+					    <select class="form-control" name="funcao" value="{{$dados->funcao}}">
 					    	<option>Selecione a funcão</option>
 					    	<option value="Técnico gestão documental">Técnico gestão documental</option>
 					      	<option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
@@ -135,7 +135,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                  <label for="exampleFormControlSelect1"></label>
-					    <select class="form-control" name="local_trabalho">
+					    <select class="form-control" name="local_trabalho" value="{{$dados->local_trabalho}}">
 					    	<option>Selecione o local de trabalho</option>
 					        <option value="Acervo Benfica">Acervo Benfica</option>
 					        <option value="Acerco Talatona">Acerco Talatona</option>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="form-group">
                  <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario">
+                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario" value="{{$dados->faixa_salarial}}">
                 </div>
               </div>
               <div class="col-md-6">

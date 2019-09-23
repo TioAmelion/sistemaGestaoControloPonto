@@ -1,7 +1,7 @@
 @extends("$tema.layout")
 
 @section('conteudo')
-<div class="col-md-12">
+<div class="col-md-12 ">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"></h3>
@@ -50,8 +50,8 @@
 						<td>{{$d->funcao}}</td>
                         <td>(+244) {{$d->telefone}}</td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="{{route('editar_func',$d->id)}}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="{{route('eliminar_func',$d->id)}}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                        
                     </tr>
@@ -76,34 +76,88 @@
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form role="form" action="{{route('salvar_func')}}" method="POST">
+          		@csrf
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
+					<div class="card-body" >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1"></label>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="genero">
+					    	<option >Selecione o genero</option>
+					        <option value="M">M</option>
+					        <option value="F">F</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="departamento">
+					    	<option>Selecione o departamento</option>
+					        <option value="Gestão da informação">Gestão da informação</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="funcao">
+					    	<option>Selecione a funcão</option>
+					    	<option value="Técnico gestão documental">Técnico gestão documental</option>
+					      	<option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
+					    </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="local_trabalho">
+					    	<option>Selecione o local de trabalho</option>
+					        <option value="Acervo Benfica">Acervo Benfica</option>
+					        <option value="Acerco Talatona">Acerco Talatona</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                 <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario">
+                </div>
+              </div>
+              <div class="col-md-6">
+              	<div class="form-group">
+              		<div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imagem">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+              	</div>
+              	<!--div class="form-group">
+            		<button type="submit" class="btn btn-primary">Enviar</button>
+            	</div-->
+        	 </div>
+       </div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="submit" class="btn btn-success" value="Add">
 					</div>
-				</form>
+				
+    </form>
 			</div>
 		</div>
 	</div>
@@ -111,29 +165,81 @@
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form role="form" action="{{route('salvar_func')}}" method="POST">
+          		@csrf
 					<div class="modal-header">						
 						<h4 class="modal-title">Edit Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
+					<div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1"></label>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="genero">
+					    	<option >Selecione o genero</option>
+					        <option value="M">M</option>
+					        <option value="F">F</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="departamento">
+					    	<option>Selecione o departamento</option>
+					        <option value="Gestão da informação">Gestão da informação</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="funcao">
+					    	<option>Selecione a funcão</option>
+					    	<option value="Técnico gestão documental">Técnico gestão documental</option>
+					      	<option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
+					    </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label for="exampleFormControlSelect1"></label>
+					    <select class="form-control" name="local_trabalho">
+					    	<option>Selecione o local de trabalho</option>
+					        <option value="Acervo Benfica">Acervo Benfica</option>
+					        <option value="Acerco Talatona">Acerco Talatona</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                 <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario">
+                </div>
+              </div>
+              <div class="col-md-6">
+              	<div class="form-group">
+              		<div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imagem">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+              	</div>
+              	<!--div class="form-group">
+            		<button type="submit" class="btn btn-primary">Enviar</button>
+            	</div-->
+        	 </div>
+       </div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="submit" class="btn btn-info" value="Save">

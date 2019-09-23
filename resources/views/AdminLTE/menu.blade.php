@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 200px">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     
 
@@ -52,12 +52,71 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="{{route('func.index')}}" class="nav-link">
+            <a href="{{route('funcionario')}}" class="nav-link">
               <i class="fas fa-users"></i>
               <p>
                 Cadastrar Funcionarios
               </p>
             </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="{{route('funcionario')}}" class="nav-link">
+              <i class="fas fa-users"></i>
+              <p>
+                Pontualidade
+              </p>
+            </a>
+          </li>
+             <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Reajustes
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('marcar.ponto')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Justificar atraso</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Justificar falta</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              </li>
+            </ul>
+          </li>
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Relatorios
+                <i class="fas fa-file-chart-line"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('marcar.ponto')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Semanal</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mensal</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

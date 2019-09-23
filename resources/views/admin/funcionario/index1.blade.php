@@ -12,7 +12,7 @@
  <body>
   <div class="container">    
      <br />
-     <h3 align="center">Laravel 5.8 Ajax Crud Tutorial - Delete or Remove Data</h3>
+     <h3 align="center"></h3>
      <br />
      <div align="right">
       <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Adicionar</button>
@@ -53,18 +53,18 @@
               <div class="col-md-6" >
                 <div class="form-group" style="width: 500px; margin-left: 30px; ">
                   <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome completo">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group" style="width: 500px; margin-left: 30px">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I">
+                    <input type="text" class="form-control" name="num_bi" id="num_bi" placeholder="Numero de B.I">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group" style="width: 500px; margin-left: 15px">
                   <label for="exampleFormControlSelect1"></label>
-              <select class="form-control" name="genero">
+              <select class="form-control" name="genero" id="genero">
                 <option >Selecione o genero</option>
                   <option value="M">M</option>
                   <option value="F">F</osption>
@@ -72,20 +72,20 @@
                 </div>
                 <div class="form-group" style="width: 500px; margin-left: 15px">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone">
+                    <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Numero de telefone">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group" style="width: 500px; margin-left: 30px">
                   <label for="exampleFormControlSelect1"></label>
-              <select class="form-control" name="departamento">
+              <select class="form-control" name="departamento" id="departamento">
                 <option>Selecione o departamento</option>
                   <option value="Gestão da informação">Gestão da informação</option>
               </select>
                 </div>
                 <div class="form-group" style="width: 500px; margin-left: 30px">
                   <label for="exampleFormControlSelect1"></label>
-              <select class="form-control" name="funcao">
+              <select class="form-control" name="funcao" id="funcao">
                 <option>Selecione a funcão</option>
                 <option value="Técnico gestão documental">Técnico gestão documental</option>
                   <option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
@@ -95,7 +95,7 @@
               <div class="col-md-6" >
                 <div class="form-group" style="width: 500px; margin-left: 15px">
                  <label for="exampleFormControlSelect1"></label>
-              <select class="form-control" name="local_trabalho">
+              <select class="form-control" name="local_trabalho" id="local_trabalho">
                 <option>Selecione o local de trabalho</option>
                   <option value="Acervo Benfica">Acervo Benfica</option>
                   <option value="Acerco Talatona">Acerco Talatona</option>
@@ -103,21 +103,22 @@
                 </div>
                 <div class="form-group" style="width: 300px; margin-left: 15px">
                  <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario">
+                    <input type="text" class="form-control" name="faixa_salarial" id="faixa_salarial" placeholder="salario">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group" style="width: 500px; margin-left: 30px">
                   <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagem">
+                        <input type="file" class="custom-file-input" name="imagem" id="imagem">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <span id="store_image"></span>
                       </div>
                 </div>
                 <div class="form-group" style="width: 500px; margin-left: 15px">
 
                 <input type="hidden" name="action" id="action" />
                 <input type="hidden" name="hidden_id" id="hidden_id" />
-                <button type="submit" id="action_button" class="btn btn-primary">Enviar</button>
+                <button type="submit" name="action_button" id="action_button" class="btn btn-primary">Enviar</button>
               </div>
               <br>
               <br>
@@ -136,14 +137,14 @@ $(document).ready(function(){
   processing: true,
   serverSide: true,
   ajax:{
-   url: "{{ route('func.index') }}",
+   url: "{{ route('func.index') }}"
   },
   columns:[
    {
     data: 'imagem',
     name: 'imagem',
     render: function(data, type, full, meta){
-     return "<img src={{asset("assests/$tema/dist/img")}}/" + data + " width='70' class='img-thumbnail' />";
+     return "<img src={{asset("assests/$tema/dist/img/")}}" + data + " width='70' class='img-thumbnail'/>";
     },
     orderable: false
    },
@@ -205,6 +206,34 @@ $(document).ready(function(){
    });
   }
 });
+
+ $(document).on('click', '.edit', function(){
+  var id = $(this).attr('id');
+  $('#form_result').html('');
+  $.ajax({
+   url:"editarDados/"+id+"",
+   dataType:"json",
+   success:function(html){
+    $('#nome').val(html.data.nome);
+    $('#genero').val(html.data.genero);
+    $('#num_bi').val(html.data.num_bi);
+    $('#telefone').val(html.data.telefone);
+    $('#departamento').val(html.data.departamento);
+    $('#imagem').val(html.data.imagem);
+    $('#local_trabalho').val(html.data.local_trabalho);
+    $('#funcao').val(html.data.funcao);
+    $('#faixa_salarial').val(html.data.faixa_salarial);
+    //$('#store_image').html("<img src={{asset("assests/$tema/dist")}}/img/" + html.data.imagem + " width='70' class='img-thumbnail' />");
+    //$('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.imagem+"' />");
+
+    $('#hidden_id').val(html.data.id);
+    //$('.modal-title').text("Edit New Record");
+    $('#action_button').val("Edit");
+    $('#action').val("edit");
+    $('#formModal').modal('show');
+   }
+  });
+ });
 });
  </script>
 </html>

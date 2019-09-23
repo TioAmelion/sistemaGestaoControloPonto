@@ -16,14 +16,14 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //$dados = Funcionario::all();
-        //return view('admin.funcionario.index1', compact('dados'));
+        $dados = Funcionario::all();
+        return view('admin.funcionario.index', compact('dados'));
 
-        if(request()->ajax())
+        /*if(request()->ajax())
         {
             return datatables()->of(Funcionario::latest()->get())
                     ->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Edit</button>';
                         $button .= '&nbsp;&nbsp;';
                         $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
                         return $button;
@@ -31,7 +31,7 @@ class FuncionarioController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.funcionario.index1');
+        return view('admin.funcionario.index');*/
     }
 
 
@@ -53,10 +53,10 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        /*Funcionario::create($request->all());
-        return redirect('admin/func/criar')->with('mensagem', 'Funcionario salvo com sucesso');*/
+        Funcionario::create($request->all());
+        return redirect('admin/func')->with('mensagem', 'Funcionario salvo com sucesso');
 
-        $rules = array(
+        /*$rules = array(
             'nome'    =>  'required',
             'telefone'     =>  'required',
             //'imagem'         =>  'required|image|max:2048',
@@ -66,7 +66,7 @@ class FuncionarioController extends Controller
             'funcao'     =>  'required',
             'local_trabalho'     =>  'required',
             'num_bi'     =>  'required'
-        );
+        );*/
 
         $error = Validator::make($request->all(), $rules);
 
@@ -117,7 +117,10 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$dados = Rol::findOrFail($id); |se o id não existe mostra a pagina de erro 404
+        $dados = funcionario::find($id); // |se o id existe mostra null
+        //dd($dados);
+        return view('admin.funcionario.update', compact('dados'));
     }
 
     /**
@@ -129,7 +132,8 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        funcionario::findOrFail($id)->update($request->all());
+        return redirect('admin/func')->with('mensagem', 'Datos atualizados');
     }
 
     /**
@@ -140,6 +144,10 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+         if(funcionario::destroy($id)){
+            return redirect('admin/func');
+        }else{
+            abort(404);
+        }
     }
 }
