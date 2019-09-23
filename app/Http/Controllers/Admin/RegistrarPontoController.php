@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
 use App\Models\Admin\RegistrarPonto;
+//use App\Http\Controllers\RegistrarPontoController;
 
 class RegistrarPontoController extends Controller
 {
@@ -38,10 +39,15 @@ class RegistrarPontoController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $hora = time();
-        $data = date('y-m-d');
-
-        RegistrarPonto::create($request->all());
+        
+        $reques = array(
+            'entrada' => date('G:i:s'),
+            'data' => date('d-m-y'),
+            'func_id' => $id
+        );
+        
+        RegistrarPonto::create($reques);
+        return redirect('admin/marcar_ponto');
    
     }
 
@@ -53,9 +59,9 @@ class RegistrarPontoController extends Controller
      */
     public function show($id)
     {
-        $dados = funcionario::find($id);
+        //$dados = funcionario::find($id);
         // return view('admin.ponto.index')->with('dados', $dados);
-        return $dados->id;
+        //return $dados->id;
     }
 
     /**

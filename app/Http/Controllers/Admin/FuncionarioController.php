@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
+use Validator;
 
 class FuncionarioController extends Controller
 {
@@ -15,8 +16,22 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        $dados = Funcionario::all();
-        return view('admin.funcionario.index', compact('dados'));
+        //$dados = Funcionario::all();
+        //return view('admin.funcionario.index1', compact('dados'));
+
+        if(request()->ajax())
+        {
+            return datatables()->of(Funcionario::latest()->get())
+                    ->addColumn('action', function($data){
+                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                        $button .= '&nbsp;&nbsp;';
+                        $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.funcionario.index1');
     }
 
 
@@ -38,8 +53,49 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        Funcionario::create($request->all());
-        return redirect('admin/func/criar')->with('mensagem', 'Funcionario salvo com sucesso');
+        /*Funcionario::create($request->all());
+        return redirect('admin/func/criar')->with('mensagem', 'Funcionario salvo com sucesso');*/
+
+        $rules = array(
+            'nome'    =>  'required',
+            'telefone'     =>  'required',
+            //'imagem'         =>  'required|image|max:2048',
+            'faixa_salarial'     =>  'required',
+            'departamento'     =>  'required',
+            'genero'     =>  'required',
+            'funcao'     =>  'required',
+            'local_trabalho'     =>  'required',
+            'num_bi'     =>  'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        //$image = $request->file('imagem');
+
+        //$new_name = rand() . '.' . $image->getClientOriginalExtension();
+
+        //$image->move(public_path('assests/AdminLTE/dist/img'), $new_name);
+
+        $form_data = array(
+            'nome'        =>  $request->nome,
+            'telefone'         =>  $request->telefone,
+            'imagem'             =>  $request->imagem,
+            'faixa_salarial' => $request->faixa_salarial,
+            'departamento' => $request->departamento,
+            'genero' => $request->funcao,
+            'funcao' => $request->local_trabalho,
+            'num_bi' => $request->num_bi,
+            'local_trabalho' => $request->local_trabalho
+        );
+
+        funcionario::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
     }
 
     /**

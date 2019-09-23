@@ -52,10 +52,10 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{route('func.index')}}" class="nav-link">
               <i class="fas fa-users"></i>
               <p>
-                Cadastrar Funcionario
+                Cadastrar Funcionarios
               </p>
             </a>
         </ul>

@@ -43,9 +43,10 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::get('menu_rol/salvar', 'MenuRolController@store')->name('menu_rol_salvar');
 
 	/*Registar funcionario */
-	Route::get('func', 'FuncionarioController@index')->name('funcionario');
-	Route::get('func/criar', 'FuncionarioController@create')->name('criar_func');
-	Route::post('func', 'FuncionarioController@store')->name('salvar_func');
+	Route::resource('func', 'FuncionarioController');
+	//Route::get('func', 'FuncionarioController@index')->name('funcionario');
+	//Route::get('func/criar', 'FuncionarioController@create')->name('criar_func');
+	//Route::post('func', 'FuncionarioController@store')->name('salvar_func');
 
 	/*Registar Ponto */
 	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('ponto');
