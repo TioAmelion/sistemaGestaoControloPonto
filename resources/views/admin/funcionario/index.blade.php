@@ -28,7 +28,6 @@
 							</span>
 						</th>
                         <th>Nome</th>
-                        <th>Genero</th>
 						<th>Função</th>
                         <th>Telefone</th>
                         <th>Acções</th>
@@ -46,13 +45,15 @@
 							</span>
 						</td>
                         <td>{{$d->nome}}</td>
-                        <td>{{$d->genero}}</td>
-						<td>{{$d->funcao}}</td>
+						            <td>{{$d->funcao}}</td>
                         <td>(+244) {{$d->telefone}}</td>
                         <td>
-                            <a href="{{route('editar_func',$d->id)}}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="{{route('eliminar_func',$d->id)}}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
+                        	<a class="btn btn-primary text-white float-left" href="{{route('editar_func',$d->id)}}" role="button">Editar</a><br><br>
+                        	<form action="{{route('eliminar_func', ['id' => $d->id])}}" method="POST">
+							@csrf @method("delete")
+							<button class="btn btn-danger float-rigth" type="submit">Apagar</button>
+							</form>
+						</td>
                        
                     </tr>
                      @endforeach
@@ -72,6 +73,28 @@
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>				
+				<h4 class="modal-title">Você tem certeza?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Deseja realmente excluir esses registros? Este processo não pode ser desfeito.</p>
+			</div>
+			<form action="#" method="POST">
+				<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="submit" class="btn btn-danger">Apagar</button>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
 	<!-- Edit Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">

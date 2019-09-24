@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
 use App\Models\Admin\RegistrarPonto;
-//use App\Http\Controllers\RegistrarPontoController;
 
 class RegistrarPontoController extends Controller
 {
@@ -17,8 +16,14 @@ class RegistrarPontoController extends Controller
      */
     public function index()
     {
-        $dados = funcionario::all();
+        $dados = funcionario::where('local_trabalho', 'Acervo Benfica')->get();
        return view('admin.ponto.index', compact('dados'));
+    }
+
+    public function index1()
+    {
+        $dado = funcionario::where('local_trabalho', 'Acerco Talatona')->get();
+        return view('admin.ponto.talatona', compact('dado'));
     }
 
     /**
@@ -37,17 +42,52 @@ class RegistrarPontoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store($id)
     {
-        
-        $reques = array(
+        // Marcar ponto hora de entrada
+        //$verif_id = \DB::table('registro')->where('func_id', $id)->get();
+        $pegar = $id;
+        $verif_id = RegistrarPonto::where('func_id', $id)->get();
+        //dd($verif_id);
+        //foreach ($verif_id as $data) {
+            if(count($verif_id) == 0){
+                $request = array(
+                'entrada' => date('G:i:s'),
+                'data' => date('d-m-y'),
+                'func_id' => $id
+                );
+                RegistrarPonto::create($request);
+                return redirect('admin/marcar_ponto');
+            }else{
+            }
+            
+        //}
+               /* $saida_a = date('G');
+                if($saida_a == 14){
+                    $request = array(
+                    'saida_a' => date('G:i:s'),
+                    'data' => date('d-m-y'),
+                    'func_id' => $id
+                    );
+                    RegistrarPonto::create($request);
+                    return redirect('admin/marcar_ponto');
+                    }
+              }
+
+          }else{
+
+            $request = array(
             'entrada' => date('G:i:s'),
             'data' => date('d-m-y'),
             'func_id' => $id
-        );
+            );
+            RegistrarPonto::create($request);
+            return redirect('admin/marcar_ponto');
+            //dd($verif_id);
+
+        }
+*/
         
-        RegistrarPonto::create($reques);
-        return redirect('admin/marcar_ponto');
    
     }
 
@@ -72,7 +112,7 @@ class RegistrarPontoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -84,7 +124,14 @@ class RegistrarPontoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request = array(
+                'entrada' => date('G:i:s'),
+                'data' => date('d-m-y'),
+                'func_id' => $id
+                );
+         //dd($request);
+        RegistrarPonto::findOrFail($id)->update($request->all());
+        return redirect('admin/marcar_ponto')->with('mensagem', 'Datos atualizados');
     }
 
     /**

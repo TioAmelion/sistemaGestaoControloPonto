@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($dados as $d)
+                @foreach($dado as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
@@ -33,10 +33,6 @@
 							<a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
 								<i class="far fa-clock"></i>Marcar Ponto
 							</a>
-	<!--a  href="" class='btn btn-block {{$d->id == 1 ? "btn-success" : ""}} text-white btn-primary view-data'>
-								<i class="far fa-clock"></i>Marcar Ponto
-							</a-->
-						</td>
 						
                     </tr>
                     @endforeach

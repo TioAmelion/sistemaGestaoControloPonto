@@ -51,9 +51,10 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::delete('func/{id}', 'FuncionarioController@destroy')->name('eliminar_func');
 
 	/*Registar Ponto */
-	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('ponto');
-	Route::get('marcar_ponto/{id}', 'RegistrarPontoController@store')->name('salvar.ponto');
-	//Route::get('marcar_ponto/{id}', 'RegistrarPontoController@show')->name('mostrarId');
-
 	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('marcar.ponto');
+	Route::get('marcar_ponto/talatona', 'RegistrarPontoController@index1')->name('talatona');
+	Route::get('marcar_ponto/{id}', 'RegistrarPontoController@store')->name('salvar.ponto');
+	//Route::put('marcar_ponto/{id}', 'RegistrarPontoController@update')->name('salvar.ponto');
+
+	
 });
