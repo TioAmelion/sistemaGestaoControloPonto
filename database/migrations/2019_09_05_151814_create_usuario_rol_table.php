@@ -21,8 +21,6 @@ class CreateUsuarioRolTable extends Migration
 
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
-
-            $table->boolean('estado');
             $table->timestamps();
 
         });

@@ -138,7 +138,7 @@
 					    <select class="form-control" name="local_trabalho" value="{{$dados->local_trabalho}}">
 					    	<option>Selecione o local de trabalho</option>
 					        <option value="Acervo Benfica">Acervo Benfica</option>
-					        <option value="Acerco Talatona">Acerco Talatona</option>
+					        <option value="Acerco Talatona">Acervo Talatona</option>
 					    </select>
                 </div>
                 <div class="form-group">

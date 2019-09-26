@@ -56,46 +56,6 @@ class FuncionarioController extends Controller
         Funcionario::create($request->all());
         return redirect('admin/func')->with('mensagem', 'Funcionario salvo com sucesso');
 
-        /*$rules = array(
-            'nome'    =>  'required',
-            'telefone'     =>  'required',
-            //'imagem'         =>  'required|image|max:2048',
-            'faixa_salarial'     =>  'required',
-            'departamento'     =>  'required',
-            'genero'     =>  'required',
-            'funcao'     =>  'required',
-            'local_trabalho'     =>  'required',
-            'num_bi'     =>  'required'
-        );*/
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        //$image = $request->file('imagem');
-
-        //$new_name = rand() . '.' . $image->getClientOriginalExtension();
-
-        //$image->move(public_path('assests/AdminLTE/dist/img'), $new_name);
-
-        $form_data = array(
-            'nome'        =>  $request->nome,
-            'telefone'         =>  $request->telefone,
-            'imagem'             =>  $request->imagem,
-            'faixa_salarial' => $request->faixa_salarial,
-            'departamento' => $request->departamento,
-            'genero' => $request->funcao,
-            'funcao' => $request->local_trabalho,
-            'num_bi' => $request->num_bi,
-            'local_trabalho' => $request->local_trabalho
-        );
-
-        funcionario::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
     }
 
     /**

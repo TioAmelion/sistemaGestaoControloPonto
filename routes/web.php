@@ -39,9 +39,6 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::put('rol/{id}', 'RolController@update')->name('atualizar_rol');
 	Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
 
-	Route::get('menu_rol', 'MenuRolController@index')->name('menu_rol');
-	Route::get('menu_rol/salvar', 'MenuRolController@store')->name('menu_rol_salvar');
-
 	/*Registar funcionario */
 	Route::get('func', 'FuncionarioController@index')->name('funcionario');
 	Route::get('func/criar', 'FuncionarioController@create')->name('criar_func');
@@ -50,11 +47,14 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::post('func', 'FuncionarioController@store')->name('salvar_func');
 	Route::delete('func/{id}', 'FuncionarioController@destroy')->name('eliminar_func');
 
-	/*Registar Ponto */
+	/*Registar Ponto*/
 	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('marcar.ponto');
 	Route::get('marcar_ponto/talatona', 'RegistrarPontoController@index1')->name('talatona');
 	Route::get('marcar_ponto/{id}', 'RegistrarPontoController@store')->name('salvar.ponto');
-	//Route::put('marcar_ponto/{id}', 'RegistrarPontoController@update')->name('salvar.ponto');
+	Route::get('falta/{id}', 'RegistrarPontoController@marcar_falta')->name('marcar_falta');
 
-	
+	/*Faltas*/
+	Route::get('faltas', 'JustificarFaltasController@index')->name('justificar_faltas');
+	Route::get('faltas/{id}', 'JustificarFaltasController@edit')->name('justificativo');
+	Route::put('faltas/{id}', 'JustificarFaltasController@update')->name('atualizar_faltas');
 });

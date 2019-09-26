@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\Admin\RegistrarPonto;
-use App\Models\Admin\Funcionario;
-class InicioController extends Controller
+use App\Http\Controllers\Controller;
+use App\Models\Admin\faltas;
+
+class JustificarFaltasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +15,8 @@ class InicioController extends Controller
      */
     public function index()
     {
-        
-        $var = \DB::select('SELECT data, nome, imagem from funcionario f, registro r WHERE f.id = r.func_id AND local_trabalho = "Acerco Talatona" AND data = CURRENT_DATE');
-
-        $dados = \DB::select('SELECT data, nome, imagem from funcionario f, registro r WHERE f.id = r.func_id AND local_trabalho = "Acervo Benfica" AND data = CURRENT_DATE');
-
-             return view('home', ['dados' => $dados, 'var' => $var]);
-        
+        $dados = \DB::select('SELECT func_id, nome, data, imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-09-01" AND "2019-09-30" ');
+        return view('admin.funcionario.faltas', compact('dados', $dados));
     }
 
     /**
@@ -30,7 +26,7 @@ class InicioController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
@@ -63,7 +59,8 @@ class InicioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dados = faltas::findOrFail($id);
+        return view('Admin.funcionario.justificar', compact('dados', $dados));
     }
 
     /**
@@ -75,7 +72,13 @@ class InicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*$request = array(
+                'entrada' => date('G:i:s'),
+                'data' => date('d-m-y'),
+                'func_id' => $id
+                );*/
+        faltas::findOrFail($id)->update($request->all());
+        return redirect('admin/funcionario')->with('mensagem', 'Dados atualizados');
     }
 
     /**
@@ -89,12 +92,3 @@ class InicioController extends Controller
         //
     }
 }
-/*//$num = \DB::select('SELECT COUNT(*) from funcionario f, registro r WHERE f.id = r.func_id AND data = CURRENT_DATE');
-
-$dados = \DB::table('registro')
-             ->join('funcionario', 'registro.id', '=', 'funcionario.id')
-             ->select('nome', 'data', 'imagem')
-             ->where('data', '25-09-19')
-             ->where('local_trabalho', 'Acervo Benfica')
-             ->get();*/
-        //dd($dados);return view('home', compact('dados', $dados));*/

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLivroTable extends Migration
+class CreateFaltaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateLivroTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro', function (Blueprint $table) {
+        Schema::create('falta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo', 100);
-            $table->string('autor', 50);
-            $table->unsignedTinyInteger('qtd');
-            $table->string('editor', 50)->nullable();
-            $table->string('foto', 100)->nullable();
+            $table->bigInteger('func_id')->unsigned();
+            $table->foreign('func_id')->references('id')->on('funcionario')->onDelete('cascade');
+            $table->string('data');
+            $table->string('justificar')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateLivroTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livro');
+        Schema::dropIfExists('falta');
     }
 }

@@ -6,12 +6,12 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Marcar <b>Ponto</b></h2>
-					</div>
-					<div class="col-sm-7">
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
-					</div>
+                        <h2>Marcar <b>Ponto</b></h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>                     
+                    </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -20,25 +20,29 @@
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
                         <th style="font-size:16px; right: 100px">Status</th>
-						<th style="font-size:16px">Action</th>
+                        <th style="font-size:16px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($dado as $d)
+                @foreach($dados as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-						<td><span class="status text-success">&bull;</span> Presente</td>
-						<td>
-							<a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
-								<i class="far fa-clock"></i>Marcar Ponto
-							</a>
-						
+                        <td><span class="status text-success">&bull;</span> Presente</td>
+                        <td>
+                            <a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
+                                <i class="far fa-clock"></i>Marcar Ponto
+                            </a>
+                            <a href="{{route('marcar_falta', $d->id)}}" class="btn btn-block  text-white btn-danger view-data">
+                                <i class="far fa-user"></i>Marcar Falta
+                            </a>
+                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-			<div class="clearfix">
+            <div class="clearfix">
                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -52,9 +56,8 @@
             </div>
 
 
-	
+    
 
         </div>
     </div> 
 @endsection
-

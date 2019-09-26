@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
 use App\Models\Admin\RegistrarPonto;
+use App\Models\Admin\Faltas;
 
 class RegistrarPontoController extends Controller
 {
@@ -17,13 +18,13 @@ class RegistrarPontoController extends Controller
     public function index()
     {
         $dados = funcionario::where('local_trabalho', 'Acervo Benfica')->get();
-       return view('admin.ponto.index', compact('dados'));
+        return view('admin.ponto.index', compact('dados'));
     }
 
     public function index1()
     {
-        $dado = funcionario::where('local_trabalho', 'Acerco Talatona')->get();
-        return view('admin.ponto.talatona', compact('dado'));
+        $dados = funcionario::where('local_trabalho', 'Acerco Talatona')->get();
+        return view('admin.ponto.talatona', compact('dados'));
     }
 
     /**
@@ -44,52 +45,50 @@ class RegistrarPontoController extends Controller
      */
     public function store($id)
     {
-        // Marcar ponto hora de entrada
-        //$verif_id = \DB::table('registro')->where('func_id', $id)->get();
-        $pegar = $id;
         $verif_id = RegistrarPonto::where('func_id', $id)->get();
-        //dd($verif_id);
-        //foreach ($verif_id as $data) {
+        $status = "presente";
             if(count($verif_id) == 0){
                 $request = array(
                 'entrada' => date('G:i:s'),
-                'data' => date('d-m-y'),
-                'func_id' => $id
+                'data' => date('Y-m-d'),
+                'func_id' => $id,
+                'status' => $status,
+                'saida_a' => "12:00",
+                'entrada_a' => "13:00",
+                'saida' => "17:00"
                 );
                 RegistrarPonto::create($request);
                 return redirect('admin/marcar_ponto');
             }else{
             }
-            
-        //}
-               /* $saida_a = date('G');
-                if($saida_a == 14){
-                    $request = array(
-                    'saida_a' => date('G:i:s'),
-                    'data' => date('d-m-y'),
-                    'func_id' => $id
-                    );
-                    RegistrarPonto::create($request);
-                    return redirect('admin/marcar_ponto');
-                    }
-              }
+     }
 
-          }else{
-
-            $request = array(
-            'entrada' => date('G:i:s'),
-            'data' => date('d-m-y'),
+     public function marcar_falta($id)
+    {
+        $pegar = $id;
+        $status = "ausente";
+        $falta = "00:00";
+        $request = array(
+            'entrada' => $falta,
+            'data' => date('Y-m-d'),
+            'saida_a' => $falta,
+            'entrada_a' => $falta,
+            'saida' => $falta,
+            'status' => $status,
             'func_id' => $id
-            );
-            RegistrarPonto::create($request);
-            return redirect('admin/marcar_ponto');
-            //dd($verif_id);
+        );
+        RegistrarPonto::create($request);
 
-        }
-*/
-        
-   
-    }
+        //Inserir na tabela faltas
+        $request_f = array(
+            'data' => date('Y-m-d'),
+            'func_id' => $id
+        );
+        Faltas::create($request_f);
+
+        return redirect('admin/marcar_ponto');
+            
+     }
 
     /**
      * Display the specified resource.
@@ -99,9 +98,9 @@ class RegistrarPontoController extends Controller
      */
     public function show($id)
     {
-        //$dados = funcionario::find($id);
-        // return view('admin.ponto.index')->with('dados', $dados);
-        //return $dados->id;
+        $dados = funcionario::find($id);
+        //return view('admin.ponto.index')->with('dados', $dados);
+         return response()->json(['dados' => $dados]);
     }
 
     /**
@@ -142,6 +141,6 @@ class RegistrarPontoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

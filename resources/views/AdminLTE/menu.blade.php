@@ -77,13 +77,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('marcar.ponto')}}" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Justificar atraso</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{route('justificar_faltas')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Justificar falta</p>
                 </a>

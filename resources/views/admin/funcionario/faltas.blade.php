@@ -6,11 +6,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Marcar <b>Ponto</b></h2>
-					</div>
-					<div class="col-sm-7">
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
+						<h2>Funcionarios com <b>Faltas</b></h2>
 					</div>
                 </div>
             </div>
@@ -19,22 +15,19 @@
                     <tr>
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
-                        <th style="font-size:16px; right: 100px">Status</th>
+                        <th style="font-size:16px; right: 100px">Data</th>
 						<th style="font-size:16px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($dados as $d)
                     <tr>
-                        <td style="font-size:16px">{{$d->id}}</td>
+                        <td style="font-size:16px">{{$d->func_id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-						<td><span class="status text-success">&bull;</span> Presente</td>
-						<td>
-							<a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
-								<i class="far fa-clock"></i>Marcar Ponto
-							</a>
-                            <a href="{{route('marcar_falta', $d->id)}}" class="btn btn-block  text-white btn-danger view-data">
-                                <i class="far fa-user"></i>Marcar Falta
+						<td>{{$d->data}}</td>
+						<td> 
+                            <a href="{{route('justificativo', ['id' => $d->func_id])}}" class="btn btn-block  text-white btn-danger view-data">
+                                <i class="far fa-user"></i>Justificar Falta
                             </a>
 						</td>
 						
@@ -61,4 +54,3 @@
         </div>
     </div> 
 @endsection
-

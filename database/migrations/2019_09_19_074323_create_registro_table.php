@@ -17,11 +17,12 @@ class CreateRegistroTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('func_id')->unsigned();
             $table->foreign('func_id')->references('id')->on('funcionario')->onDelete('cascade');
-            $table->date('data');
+            $table->string('data');
             $table->time('entrada')->nullable();
             $table->time('saida_a')->nullable();
             $table->time('entrada_a')->nullable();
             $table->time('saida')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
