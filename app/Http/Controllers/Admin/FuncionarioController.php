@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
 use Validator;
+//use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class FuncionarioController extends Controller
 {
+    //use AuthenticatesUsers;
+
+    //protected $redirectTo = '/home';
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

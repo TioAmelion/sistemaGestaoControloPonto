@@ -1,73 +1,23 @@
-@extends("$tema.layout")
+@extends('layouts.app')
 
-@section('conteudo')
-<br><br>
-<div class="col-xs-10 col-xs-offset-1">
-		<div class="card col-xs-6" style="right: 10px">
-                  <div class="card-header">
-                    <h3 class="mb-0">Funcionarios Benfica</h3>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-                    <div class="card-tools">
-                      <span class="p-3 m-1 badge bg-danger">0 presentes</span>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <ul class="users-list clearfix">
-                    	@foreach($dados as $d)
-                      <li>
-                        <img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' alt="User Image">
-                        <a class="p-3 m-1" href="#">{{$d->nome}}</a>
-                        <span class="users-list-date">{{$d->data}}</span>
-                      </li>
-                      @endforeach
-                    </ul>
-                    <!-- /.users-list -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer text-center">
-                    <a href="javascript::">Ver mais</a>
-                  </div>
-                  <!-- /.card-footer -->
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
                 </div>
-                <!--/.card -->
-                <div class="card col-xs-6">
-                  <div class="card-header">
-                    <h3 class="mb-0">Funcionarios Talatona</h3>
-
-                    <div class="card-tools">
-                      <span class="p-3 m-1 badge bg-danger">0 presentes</span>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <ul class="users-list clearfix">
-                    	@foreach($var as $v)
-                      <li>
-                        <img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' alt="User Image">
-                        <a class="p-3 m-1 " href="#">{{$v->nome}}</a>
-                        <span class="users-list-date">{{$v->data}}</span>
-                      </li>
-                      @endforeach
-                    </ul>
-                    <!-- /.users-list -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer text-center">
-                    <a href="javascript::">Ver mais</a>
-                  </div>
-                  <!-- /.card-footer -->
-                </div>
+            </div>
+        </div>
+    </div>
 </div>
-              <!-- /.col -->
-            
-
 @endsection

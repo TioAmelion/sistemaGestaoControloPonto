@@ -10,7 +10,8 @@
           <img src='{{asset("assests/$tema/dist/img/user2-160x160.jpg")}}' class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <!--a href="#" class="d-block"></a-->
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -20,7 +21,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url('/')}}" class="nav-link active">
+            <a href="{{url('inicio')}}" class="nav-link active">
               <p>
                 Dashboard
               </p>

@@ -23,10 +23,17 @@
 //ROTA COM NOME EXTENÇO E ACESSA-LA POR UM ÚNICO NOME
 //Route::get('admin/sistema/permissao', 'PermissaoController@teste')->name('permissao');
 
-Route::get('/', 'InicioController@index');
+//Route::get('/', 'InicioController@index');
 
-Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
-	Route::get('permissao', 'PermissaoController@index')->name('permissao');
+//Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
+	
+//});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('inicio', 'Admin\InicioController@index')->name('inicio');
+
+Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::get('permissao/create', 'PermissaoController@create')->name('criar_permissao');
 	Route::get('menu', 'MenuController@index')->name('menu');
 	Route::get('menu/criar', 'MenuController@create')->name('criar_menu');
@@ -40,21 +47,20 @@ Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
 
 	/*Registar funcionario */
-	Route::get('func', 'FuncionarioController@index')->name('funcionario');
-	Route::get('func/criar', 'FuncionarioController@create')->name('criar_func');
-	Route::get('func/{id}/editar', 'FuncionarioController@edit')->name('editar_func');
-	Route::put('func/{id}', 'FuncionarioController@update')->name('atualizar_fuc');
-	Route::post('func', 'FuncionarioController@store')->name('salvar_func');
-	Route::delete('func/{id}', 'FuncionarioController@destroy')->name('eliminar_func');
+	Route::get('/funcionario', 'Admin\FuncionarioController@index')->name('funcionario');
+	Route::get('func/criar', 'Admin\FuncionarioController@create')->name('criar_func');
+	Route::get('func/{id}/editar', 'Admin\FuncionarioController@edit')->name('editar_func');
+	Route::put('func/{id}', 'Admin\FuncionarioController@update')->name('atualizar_fuc');
+	Route::post('func', 'Admin\FuncionarioController@store')->name('salvar_func');
+	Route::delete('func/{id}', 'Admin\FuncionarioController@destroy')->name('eliminar_func');
 
 	/*Registar Ponto*/
-	Route::get('marcar_ponto', 'RegistrarPontoController@index')->name('marcar.ponto');
-	Route::get('marcar_ponto/talatona', 'RegistrarPontoController@index1')->name('talatona');
-	Route::get('marcar_ponto/{id}', 'RegistrarPontoController@store')->name('salvar.ponto');
-	Route::get('falta/{id}', 'RegistrarPontoController@marcar_falta')->name('marcar_falta');
+	Route::get('/marcar.ponto', 'Admin\RegistrarPontoController@index')->name('marcar.ponto');
+	Route::get('marcar_ponto/talatona', 'Admin\RegistrarPontoController@index1')->name('talatona');
+	Route::get('marcar_ponto/{id}', 'Admin\RegistrarPontoController@store')->name('salvar.ponto');
+	Route::get('falta/{id}', 'Admin\RegistrarPontoController@marcar_falta')->name('marcar_falta');
 
 	/*Faltas*/
-	Route::get('faltas', 'JustificarFaltasController@index')->name('justificar_faltas');
-	Route::get('faltas/{id}', 'JustificarFaltasController@edit')->name('justificativo');
-	Route::put('faltas/{id}', 'JustificarFaltasController@update')->name('atualizar_faltas');
-});
+	Route::get('faltas', 'Admin\JustificarFaltasController@index')->name('justificar_faltas');
+	Route::get('faltas/{id}', 'Admin\JustificarFaltasController@edit')->name('justificativo');
+	Route::put('faltas/{id}', 'Admin\JustificarFaltasController@update')->name('atualizar_faltas');
