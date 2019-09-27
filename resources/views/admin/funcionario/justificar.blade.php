@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
               <!--label>Email</label-->
-              <input type="file" class="form-control" required>
+              <!--input type="file" class="form-control" required-->
             </div>
             
           <div class="modal-footer">

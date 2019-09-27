@@ -15,7 +15,7 @@ class JustificarFaltasController extends Controller
      */
     public function index()
     {
-        $dados = \DB::select('SELECT func_id, nome, data, imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-09-01" AND "2019-09-30" ');
+        $dados = \DB::select('SELECT f.id, r.nome, f.data, imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-09-01" AND "2019-09-30" ');
         return view('admin.funcionario.faltas', compact('dados', $dados));
     }
 
@@ -60,6 +60,7 @@ class JustificarFaltasController extends Controller
     public function edit($id)
     {
         $dados = faltas::findOrFail($id);
+        //dd($id);
         return view('Admin.funcionario.justificar', compact('dados', $dados));
     }
 
@@ -78,7 +79,7 @@ class JustificarFaltasController extends Controller
                 'func_id' => $id
                 );*/
         faltas::findOrFail($id)->update($request->all());
-        return redirect('admin/funcionario')->with('mensagem', 'Dados atualizados');
+        return redirect('admin/faltas')->with('mensagem', 'Dados atualizados');
     }
 
     /**

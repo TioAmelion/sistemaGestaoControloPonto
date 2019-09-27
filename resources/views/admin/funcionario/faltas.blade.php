@@ -22,11 +22,11 @@
                 <tbody>
                 @foreach($dados as $d)
                     <tr>
-                        <td style="font-size:16px">{{$d->func_id}}</td>
+                        <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
 						<td>{{$d->data}}</td>
 						<td> 
-                            <a href="{{route('justificativo', ['id' => $d->func_id])}}" class="btn btn-block  text-white btn-danger view-data">
+                            <a href="{{route('justificativo', ['id' => $d->id])}}" class="btn btn-block  text-white btn-danger view-data">
                                 <i class="far fa-user"></i>Justificar Falta
                             </a>
 						</td>
