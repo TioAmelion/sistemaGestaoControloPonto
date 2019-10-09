@@ -110,12 +110,12 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo" required>
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I">
+                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I"  required>
                 </div>
               </div>
               <div class="col-md-6">
@@ -129,7 +129,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone">
+                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone" required>
                 </div>
               </div>
               <div class="col-md-6">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1"></label>
-					    <select class="form-control" name="funcao">
+					    <select class="form-control" name="funcao" >
 					    	<option>Selecione a funcão</option>
 					    	<option value="Técnico gestão documental">Técnico gestão documental</option>
 					      	<option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
@@ -160,13 +160,13 @@
                 </div>
                 <div class="form-group">
                  <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario">
+                    <input type="text" class="form-control" name="faixa_salarial" placeholder="salario" required>
                 </div>
               </div>
               <div class="col-md-6">
               	<div class="form-group">
               		<div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagem">
+                        <input type="file" class="custom-file-input" name="imagem" required>
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
               	</div>

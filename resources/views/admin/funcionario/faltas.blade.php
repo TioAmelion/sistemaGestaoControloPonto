@@ -16,6 +16,7 @@
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
                         <th style="font-size:16px; right: 100px">Data</th>
+                        <th style="font-size:16px; right: 100px">Falta</th>
 						<th style="font-size:16px">Action</th>
                     </tr>
                 </thead>
@@ -23,8 +24,9 @@
                 @foreach($dados as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
-                        <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
+                        <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
 						<td>{{$d->data}}</td>
+                        <td>{{$d->data}}</td>
 						<td> 
                             <a href="{{route('justificativo', ['id' => $d->id])}}" class="btn btn-block  text-white btn-danger view-data">
                                 <i class="far fa-user"></i>Justificar Falta

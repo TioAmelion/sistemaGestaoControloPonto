@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Admin\faltas;
 
 class JustificarFaltasController extends Controller
@@ -15,7 +16,7 @@ class JustificarFaltasController extends Controller
      */
     public function index()
     {
-        $dados = \DB::select('SELECT f.id, r.nome, f.data, imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-09-01" AND "2019-09-30" ');
+        $dados = \DB::select('SELECT f.id, r.nome, f.data, f.imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-10-01" AND "2019-10-30" ');
         return view('admin.funcionario.faltas', compact('dados', $dados));
     }
 
@@ -60,7 +61,6 @@ class JustificarFaltasController extends Controller
     public function edit($id)
     {
         $dados = faltas::findOrFail($id);
-        //dd($id);
         return view('Admin.funcionario.justificar', compact('dados', $dados));
     }
 
@@ -73,13 +73,32 @@ class JustificarFaltasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$request = array(
-                'entrada' => date('G:i:s'),
-                'data' => date('d-m-y'),
-                'func_id' => $id
-                );*/
-        faltas::findOrFail($id)->update($request->all());
-        return redirect('admin/faltas')->with('mensagem', 'Dados atualizados');
+        $image = $request->file('imagem');
+        $validator = Validator::make($request->all(),
+            [
+                'justificar' =>  'required',
+                'falta' =>  'required',
+                'imagem'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             ]
+        );
+
+        if ($validator->fails()){
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+   
+        $image = $request->file('imagem');
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+
+        $form_data = array(
+            'justificar' =>$request->justificar,
+            'imagem' => $new_name
+        );
+
+         faltas::findOrFail($id)->update($form_data);
+         return redirect('faltas')->with('mensagem', 'Dados atualizados');
     }
 
     /**

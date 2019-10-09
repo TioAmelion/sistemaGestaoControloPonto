@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Funcionario;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 //use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class FuncionarioController extends Controller
@@ -67,8 +67,50 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        Funcionario::create($request->all());
-        return redirect('admin/func')->with('mensagem', 'Funcionario salvo com sucesso');
+        // Funcionario::create($request->all());
+        // return redirect('funcionario')->with('mensagem', 'Funcionario salvo com sucesso');
+
+        //$image = $request->file('imagem');
+    //      $validator = Validator::make($request->all(),
+
+    //      [
+    //         'nome'    =>  'required',
+    //         'num_bi'     =>  'required',
+    //         'imagem'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //         'local_trabalho'    =>  'required',
+    //         'departamento'    =>  'required',
+    //         'faixa_salarial'    =>  'required|numeric|between:0,99.99',
+    //         'funcao'    =>  'required',
+    //         'genero'    =>  'required',
+    //         'telefone'    =>  'required',
+    //     ]
+    // );
+
+    //      if ($validator->fails()){
+    //         return back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
+
+    //     $image = $request->file('imagem');
+    //     $new_name = rand() . '.' . $image->getClientOriginalExtension();
+    //     $image->move(public_path('images'), $new_name);
+
+    //     $requestt = array(
+    //         'nome'       =>   $request->nome,
+    //         'num_bi'        =>   $request->num_bi,
+    //         'imagem'            =>   $new_name,
+    //         'local_trabalho'            =>  $request->local_trabalho,
+    //         'departamento'            =>   $request->departamento,
+    //         'faixa_salarial'            =>   $request->faixa_salarial,
+    //         'funcao'            =>   $request->funcao,
+    //         'genero'            =>   $request->genero,
+    //         'telefone'            =>   $request->telefone
+    //     );
+
+    //     dd($requestt);
+         Funcionario::create($request->all());
+         return redirect('funcionario')->with('mensagem', 'Funcionario salvo com sucesso');
 
     }
 
@@ -107,7 +149,7 @@ class FuncionarioController extends Controller
     public function update(Request $request, $id)
     {
         funcionario::findOrFail($id)->update($request->all());
-        return redirect('admin/func')->with('mensagem', 'Datos atualizados');
+        return redirect('funcionario')->with('mensagem', 'Datos atualizados');
     }
 
     /**
@@ -119,7 +161,7 @@ class FuncionarioController extends Controller
     public function destroy($id)
     {
          if(funcionario::destroy($id)){
-            return redirect('admin/func');
+            return redirect('funcionario');
         }else{
             abort(404);
         }

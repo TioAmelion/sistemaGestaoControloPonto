@@ -11,7 +11,7 @@
         </div>
         <div class="info">
           <!--a href="#" class="d-block"></a-->
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url('inicio')}}" class="nav-link active">
+            <a href="{{route('inicio')}}" class="nav-link active">
               <p>
                 Dashboard
               </p>
@@ -61,10 +61,10 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="{{route('funcionario')}}" class="nav-link">
+            <a href="{{route('events')}}" class="nav-link">
               <i class="fas fa-users"></i>
               <p>
-                Pontualidade
+                Plano de férias
               </p>
             </a>
           </li>
@@ -103,20 +103,35 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('marcar.ponto')}}" class="nav-link">
+                <a href="{{route('imprimir')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Semanal</p>
+                  <p>Imprimir Ponto Benfica</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Mensal</p>
+                  <p>Imprimir Ponto Talatona</p>
                 </a>
               </li>
               <li class="nav-item">
               </li>
             </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+             <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                 <span class="caret"></span>
+                    </a>
+                      <a  href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
+                      </a>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                      </form>
           </li>
         </ul>
       </nav>

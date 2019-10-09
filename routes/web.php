@@ -32,6 +32,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('inicio', 'Admin\InicioController@index')->name('inicio');
+Route::get('pontoFacial', 'Admin\InicioController@index1')->name('pontoFacial');
 
 Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::get('permissao/create', 'PermissaoController@create')->name('criar_permissao');
@@ -47,7 +48,7 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
 
 	/*Registar funcionario */
-	Route::get('/funcionario', 'Admin\FuncionarioController@index')->name('funcionario');
+	Route::get('funcionario', 'Admin\FuncionarioController@index')->name('funcionario');
 	Route::get('func/criar', 'Admin\FuncionarioController@create')->name('criar_func');
 	Route::get('func/{id}/editar', 'Admin\FuncionarioController@edit')->name('editar_func');
 	Route::put('func/{id}', 'Admin\FuncionarioController@update')->name('atualizar_fuc');
@@ -55,7 +56,7 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::delete('func/{id}', 'Admin\FuncionarioController@destroy')->name('eliminar_func');
 
 	/*Registar Ponto*/
-	Route::get('/marcar.ponto', 'Admin\RegistrarPontoController@index')->name('marcar.ponto');
+	Route::get('marcar.ponto', 'Admin\RegistrarPontoController@index')->name('marcar.ponto');
 	Route::get('marcar_ponto/talatona', 'Admin\RegistrarPontoController@index1')->name('talatona');
 	Route::get('marcar_ponto/{id}', 'Admin\RegistrarPontoController@store')->name('salvar.ponto');
 	Route::get('falta/{id}', 'Admin\RegistrarPontoController@marcar_falta')->name('marcar_falta');
@@ -64,3 +65,15 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::get('faltas', 'Admin\JustificarFaltasController@index')->name('justificar_faltas');
 	Route::get('faltas/{id}', 'Admin\JustificarFaltasController@edit')->name('justificativo');
 	Route::put('faltas/{id}', 'Admin\JustificarFaltasController@update')->name('atualizar_faltas');
+
+	/*Imprimir Ponto*/
+	Route::get('imprimir', 'Admin\RegistrarPontoController@imprimir')->name('imprimir');
+	Route::get('export', 'Admin\RegistrarPontoController@export')->name('export');
+
+	/* Imprimir ponto Individual */
+	Route::get('imprimir_ponto/{$id}', 'Admin\RegistrarPontoController@ponto_individual')->name('imprimir_ponto');
+	Route::get('export_individual', 'Admin\RegistrarPontoController@export')->name('export_p');
+	
+
+	Route::get('events', 'Admin\EventController@index')->name('events');
+	Route::post('add_events', 'Admin\EventController@store')->name('add_events');

@@ -15,6 +15,7 @@ class CreateRegistroTable extends Migration
     {
         Schema::create('registro', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('empresa')->default('Interdigitos');
             $table->bigInteger('func_id')->unsigned();
             $table->foreign('func_id')->references('id')->on('funcionario')->onDelete('cascade');
             $table->string('data');

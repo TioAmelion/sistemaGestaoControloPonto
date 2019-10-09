@@ -18,6 +18,8 @@ class CreateFaltaTable extends Migration
             $table->bigInteger('func_id')->unsigned();
             $table->foreign('func_id')->references('id')->on('funcionario')->onDelete('cascade');
             $table->string('data');
+            $table->string('falta')->nullable();;
+            $table->string('imagem')->nullable();;
             $table->string('justificar')->nullable();
             $table->timestamps();
         });

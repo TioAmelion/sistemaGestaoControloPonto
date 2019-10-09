@@ -60,7 +60,7 @@
                         </div>
 
                         <div>
-                            <a href="#" class="txt1">
+                            <a href="{{ route('register') }}" class="txt1">
                                 Forgot Password?
                             </a>
                         </div>
@@ -95,3 +95,6 @@
 
 </body>
 </html>
+
+
+

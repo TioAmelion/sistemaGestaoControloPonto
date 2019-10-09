@@ -6,10 +6,9 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Marcar <b>Ponto</b></h2>
+						<h2>Marcar <b>Ponto <span class="text-warning" id="demo"></span></b></h2>
 					</div>
 					<div class="col-sm-7">
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
 						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
 					</div>
                 </div>
@@ -19,7 +18,7 @@
                     <tr>
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
-                        <th style="font-size:16px; right: 100px">Status</th>
+                        <th style="font-size:16px; right: 100px">Local de trabalho</th>
 						<th style="font-size:16px">Action</th>
                     </tr>
                 </thead>
@@ -28,7 +27,7 @@
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-						<td><span class="status text-success">&bull;</span> Presente</td>
+						<td>{{$d->local_trabalho}}</td>
 						<td>
 							<a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
 								<i class="far fa-clock"></i>Marcar Ponto
@@ -60,5 +59,17 @@
 
         </div>
     </div> 
+    <script type="text/javascript">
+        var myVar = setInterval(myTimer ,1000);
+        function myTimer() {
+            var d = new Date(), displayDate;
+           if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+              displayDate = d.toLocaleTimeString('pt-BR');
+           } else {
+              displayDate = d.toLocaleTimeString('pt-BR', {timeZone: 'Africa/luanda'});
+           }
+              document.getElementById("demo").innerHTML = displayDate;
+        }
+    </script>
 @endsection
 

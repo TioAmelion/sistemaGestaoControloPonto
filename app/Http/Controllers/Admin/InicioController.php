@@ -12,6 +12,11 @@ class InicioController extends Controller
 
         $dados = \DB::select('SELECT data, nome, imagem from funcionario f, registro r WHERE f.id = r.func_id AND local_trabalho = "Acervo Benfica" AND data = CURRENT_DATE');
 
-        return view('home1', ['dados' => $dados, 'var' => $var]);
-}
+        return view('admin.presente', ['dados' => $dados, 'var' => $var]);
+
+    }
+
+     public function index1(){
+    	return view('admin.ponto-facial');
+    }
 }
