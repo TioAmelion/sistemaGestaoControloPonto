@@ -54,6 +54,7 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::put('func/{id}', 'Admin\FuncionarioController@update')->name('atualizar_fuc');
 	Route::post('func', 'Admin\FuncionarioController@store')->name('salvar_func');
 	Route::delete('func/{id}', 'Admin\FuncionarioController@destroy')->name('eliminar_func');
+	Route::get('funcionario/imprimir', 'Admin\FuncionarioController@imprimir_qrCode')->name('funcionario/imprimir');
 
 	/*Registar Ponto*/
 	Route::get('marcar.ponto', 'Admin\RegistrarPontoController@index')->name('marcar.ponto');

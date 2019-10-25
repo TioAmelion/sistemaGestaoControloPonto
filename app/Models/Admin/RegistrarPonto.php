@@ -31,7 +31,7 @@ class RegistrarPonto extends Model
     public function verifica($id){
 
         $hoje = date('Y-m-d');
-        $filtro = DB::select("SELECT r.data, r.saida_a, r.entrada_a, r.saida FROM registro r, funcionario f WHERE r.func_id = '$id' AND '$id' = f.id AND r.data = '$hoje' ");
+        $filtro = DB::select("SELECT r.data, r.entrada, r.saida_a, r.entrada_a, r.saida FROM registro r, funcionario f WHERE r.func_id = '$id' AND '$id' = f.id AND r.data = '$hoje' ");
         return $filtro;
     }
 

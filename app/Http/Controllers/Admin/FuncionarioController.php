@@ -48,6 +48,11 @@ class FuncionarioController extends Controller
         return view('admin.funcionario.index');*/
     }
 
+    public function imprimir_qrCode(){
+        $dados = Funcionario::all();
+        return view('Admin.funcionario.qrCode', compact('dados', $dados));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,6 +63,8 @@ class FuncionarioController extends Controller
     {
         return view('admin.funcionario.create');
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -120,6 +127,8 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+
     public function show($id)
     {
         //

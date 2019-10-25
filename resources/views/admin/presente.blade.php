@@ -8,7 +8,9 @@
                     <h3 class="mb-0">Funcionarios Benfica</h3>
 
                     <div class="card-tools">
-                      <span class="p-3 m-1 badge bg-danger">0 presentes</span>
+                      @foreach($numero1 as $num)
+                      <span class="p-3 m-1 badge bg-danger">{{$num->numero}} presente</span>
+                      @endforeach
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -41,7 +43,9 @@
                     <h3 class="mb-0">Funcionarios Talatona</h3>
 
                     <div class="card-tools">
-                      <span class="p-3 m-1 badge bg-danger">0 presentes</span>
+                      @foreach($numero as $n)
+                      <span class="p-3 m-1 badge bg-danger">{{$n->numero}} presente</span>
+                      @endforeach
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>

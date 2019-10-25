@@ -13,7 +13,7 @@
 						<h2>Gerenciar<b> funcionários</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Novo Funcionario</span></a>
+						<a href="{{route('funcionario/imprimir')}}" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Imprimir Codigo Qr</span></a>
 												
 					</div>
                 </div>
