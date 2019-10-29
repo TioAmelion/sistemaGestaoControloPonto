@@ -6,10 +6,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-            <h2>Codigo Qr <b>Ponto <span class="text-warning" id="demo"></span></b></h2>
-          </div>
-          <div class="col-sm-7">
-            <a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>           
+            <h2>Codigo Qr <b>Funcionarios <span class="text-warning" id="demo"></span></b></h2>
           </div>
                 </div>
             </div>
@@ -26,11 +23,12 @@
                 @foreach($dados as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
-                        <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-                        <td>{!! QrCode::size(250)->generate('$d->id'); !!}</td>
+                        <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
+                        <td>{!! QrCode::size(250)->generate($d->id); !!}</td>
+                        <th style="font-size:16px">
+                            <a class="btn btn-primary text-white float-left" onclick="myFunction()" href="#" role="button">Imprimir</a>
+                        </th>
                     </tr>
-                    
-                        <th style="font-size:16px">Codigo Qr</th>
                     @endforeach
                 </tbody>
             </table>
@@ -46,6 +44,11 @@
               displayDate = d.toLocaleTimeString('pt-BR', {timeZone: 'Africa/luanda'});
            }
               document.getElementById("demo").innerHTML = displayDate;
+        }
+
+
+        function myFunction() {
+          window.print();
         }
     </script>
 @endsection

@@ -76,9 +76,9 @@ class RegistrarPontoController extends Controller
      */
     public function store($id)
     {
-        $hora1      = strtotime('12');
-        $hora2      = strtotime('14');
-        $horaAtual  = strtotime(date('H'));
+        $hora1      = strtotime(date('Y-m-d' . '12:00:00'));
+        $hora2      = strtotime(date('Y-m-d' . '17:00:00'));
+        $horaAtual  = strtotime(date('Y-m-d'. 'H:i:s'));
 
         //verifica se o funcionario já marcou o ponto(entrada)
         $dados = new RegistrarPonto();
@@ -110,15 +110,15 @@ class RegistrarPontoController extends Controller
                  return redirect('marcar.ponto');
             echo "entrada vazia";
 
-        }elseif(empty($key->saida_a) && $horaAtual >= $hora1 && $horaAtual <= $hora2){
-            //echo "hora actual ".$horaAtual." hora do almoço ".$hora1;
+        }elseif(empty($key->saida_a) && $horaAtual >= $hora1){
+            //echo "hora actual ".$horaAtual." hora do almoço ".$hora1."<br>";
             date_default_timezone_set('Africa/Luanda');
             $agora = Date('H:i');
 
             RegistrarPonto::where('func_id', $id)->update(['saida_a' => $agora]);
             return redirect('marcar.ponto');
             
-
+       
         }elseif(empty($key->entrada_a) && !empty($key->saida_a)){
 
             date_default_timezone_set('Africa/Luanda');
@@ -128,7 +128,7 @@ class RegistrarPontoController extends Controller
             return redirect('marcar.ponto');
             echo "almoco vazia";
             
-        }elseif(empty($key->saida) && !empty($key->entrada)){
+        }elseif(empty($key->saida) && $horaAtual >= $hora2){
 
             date_default_timezone_set('Africa/Luanda');
             $agora = Date('H:i');

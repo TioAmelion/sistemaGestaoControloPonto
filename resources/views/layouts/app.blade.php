@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md py-md-4">
             <div class="container">
                 @guest
                 @if (Route::has('register'))
@@ -32,6 +32,7 @@
                 </a>
                 @endif
                         @else
+                        <img src='{{asset("assests/$tema/logo.png")}}' class="h-25 d-inline-block" style="width: 55px">
                         <a class="navbar-brand" href="{{ url('/inicio') }}">
                     @yield('titulo','Sistema de Ponto') 
                 </a>
@@ -83,7 +84,23 @@
                 </div>
             </div>
         </nav>
+      <img src='{{asset("assests/$tema/welcome.jpg")}}'>
+      <br><br><br><br>
 
+      <div>
+    <div class="card-body">
+        <div class="font-weight-bold p-3 mb-5 bg-white text-dark text-center">
+            <p class="card-text font-weight-bold display-3">Eliminando o ponto manual</p>
+
+            <sapn class="font-weight-bold display-5">O Livro de Ponto é utilizado em diversas empresas para registrar os         horários  de entrada e saída do empregado. Não apenas o horário do início da manhã e o da noite, mas também os intervalos  como o almoço ou mesmo quando    sair em horário diverso e inesperado.
+        </span>
+        </div>
+    </div>
+
+      <span>Minimizando o trabalho dos profissionais de R.H</span>
+      </div>
+      <img src='{{asset("assests/$tema/help.jpg")}}'>
+      
         <main class="py-4">
             @yield('content')
         </main>

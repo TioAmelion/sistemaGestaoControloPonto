@@ -13,7 +13,7 @@
 						<h2>Gerenciar<b> funcionários</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="{{route('funcionario/imprimir')}}" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Imprimir Codigo Qr</span></a>
+						<a href="#addEmployeeModal" data-toggle="modal" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add funcionario</span></a>
 												
 					</div>
                 </div>
@@ -28,7 +28,7 @@
 							</span>
 						</th>
                         <th>Nome</th>
-						<th>Função</th>
+						          <th>Função</th>
                         <th>Telefone</th>
                         <th>Acções</th>
                     </tr>
@@ -188,7 +188,7 @@
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form role="form" action="{{route('salvar_func')}}" method="POST">
+				<form role="form" enctype="multipart/form-data" action="{{route('salvar_func')}}" method="POST">
           		@csrf
 					<div class="modal-header">						
 						<h4 class="modal-title">Edit Employee</h4>

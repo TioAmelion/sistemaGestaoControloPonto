@@ -61,6 +61,14 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="{{route('funcionario/imprimir')}}" class="nav-link">
+              <i class="fas fa-print"></i>
+              <p>
+                Imprimir Qr Code
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="{{route('events')}}" class="nav-link">
               <i class="fas fa-users"></i>
               <p>
