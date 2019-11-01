@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -86,25 +84,28 @@
         </nav>
       <img src='{{asset("assests/$tema/welcome.jpg")}}'>
       <br><br><br><br>
+      <div class="font-weight-bold p-3 mb-5 bg-white text-dark text-center">
+            <p class="card-text font-weight-bold display-4 text-primary">Minimizando o tempo e esforço do R.H</p>
 
-      <div>
-    <div class="card-body">
-        <div class="font-weight-bold p-3 mb-5 bg-white text-dark text-center">
-            <p class="card-text font-weight-bold display-3">Eliminando o ponto manual</p>
-
-            <sapn class="font-weight-bold display-5">O Livro de Ponto é utilizado em diversas empresas para registrar os         horários  de entrada e saída do empregado. Não apenas o horário do início da manhã e o da noite, mas também os intervalos  como o almoço ou mesmo quando    sair em horário diverso e inesperado.
-        </span>
-        </div>
+            <center>
+          <img src='{{asset("assests/$tema/help.jpg")}}'>
+      
+      <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+        <img src='{{asset("assests/$tema/time.jpg")}}'>
     </div>
 
-      <span>Minimizando o trabalho dos profissionais de R.H</span>
+    <div class="col-md-5">
+        <img src='{{asset("assests/$tema/help.jpg")}}'>
+    </div>
+</div>
+    </div>
+      </center>
       </div>
-      <img src='{{asset("assests/$tema/help.jpg")}}'>
       
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>
 

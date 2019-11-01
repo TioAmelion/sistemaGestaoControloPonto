@@ -16,9 +16,9 @@ class JustificarFaltasController extends Controller
      */
     public function index()
     {
-        $dados = \DB::select('SELECT f.id, r.nome, f.data, f.imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN "2019-10-01" AND "2019-10-30" ');
+        $dados = \DB::select('SELECT f.id, r.nome, f.data, f.imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data = CURRENT_DATE ');
         return view('admin.funcionario.faltas', compact('dados', $dados));
-    }
+    } //BETWEEN "2019-10-01" AND "2019-10-30"
 
     /**
      * Show the form for creating a new resource.

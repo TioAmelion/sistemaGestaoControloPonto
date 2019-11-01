@@ -18,32 +18,22 @@
                     <tr>
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
-                        <th style="font-size:16px; right: 100px">Local de trabalho</th>
-						<th style="font-size:16px">Action</th>
+                        <th style="font-size:16px; right: 100px">Função</th>
+                        <th style="font-size:16px">Acção</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($dados as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
-                        <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-						<td>{{$d->local_trabalho}}</td>
-                        @can('supervisor_benfica')
+                        <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->name}}</a></td>
+						<td>{{$d->role}}</td>
 						<td>
-							<a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
-								<i class="far fa-clock"></i>Marcar Ponto
+							<a href="{{route('usuarios_edit', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
+                                Editar permissão
 							</a>
-                            <a href="{{route('marcar_falta', $d->id)}}" class="btn btn-block  text-white btn-danger view-data">
-                                <i class="far fa-user"></i>Marcar Falta
-                            </a>
 						</td>
-                        @else
-						<td>
-                            <a href="#" class="btn btn-block  text-white btn-primary view-data">
-                               Sem permissão
-                            </a>
-                        </td>
-                        @endcan
+						
                     </tr>
                     @endforeach
                 </tbody>

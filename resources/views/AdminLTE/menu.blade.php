@@ -126,6 +126,16 @@
               </li>
             </ul>
           </li>
+          @can('super_admin')
+          <li class="nav-item has-treeview">
+            <a href="{{route('usuarios')}}" class="nav-link">
+              <i class="fas fa-users"></i>
+              <p>
+                Permissões usuarios
+              </p>
+            </a>
+          </li>
+          @endcan
         </ul>
         <ul>
           <li>

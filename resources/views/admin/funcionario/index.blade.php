@@ -12,10 +12,23 @@
                     <div class="col-sm-6">
 						<h2>Gerenciar<b> funcionários</b></h2>
 					</div>
+
+          @can('super_admin')
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" data-toggle="modal" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add funcionario</span></a>
-												
+						<a href="#addEmployeeModal" data-toggle="modal" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add funcionario</span></a>					
 					</div>
+
+          @elsecan('admin')
+          <div class="col-sm-6">
+            <a href="#addEmployeeModal" data-toggle="modal" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add funcionario</span></a>          
+          </div>
+
+          @else('')
+          <div class="col-sm-6">
+            <a href="#" data-toggle="modal" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Sem permissão</span></a>          
+          </div>
+          @endcan
+
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -47,14 +60,23 @@
                         <td>{{$d->nome}}</td>
 						            <td>{{$d->funcao}}</td>
                         <td>(+244) {{$d->telefone}}</td>
+                        @can('super_admin')
                         <td>
                         	<a class="btn btn-primary text-white float-left" href="{{route('editar_func',$d->id)}}" role="button">Editar</a><br><br>
                         	<form action="{{route('eliminar_func', ['id' => $d->id])}}" method="POST">
-							@csrf @method("delete")
-							<button class="btn btn-danger float-rigth" type="submit">Apagar</button>
-							</form>
-						</td>
-                       
+            							@csrf @method("delete")
+            							<button class="btn btn-danger float-rigth" type="submit">Apagar</button>
+            							</form>
+            						</td>
+                        @elsecan('admin')
+                        <td>
+                         <a class="btn btn-primary text-white float-left" href="{{route('editar_func',$d->id)}}" role="button">Editar</a><br><br>
+                        </td>
+                        @else('')
+                        <td>
+                          <a class="btn btn-primary text-white float-left" href="#" role="button">Sem permissão</a>
+                        </td>
+                        @endcan
                     </tr>
                      @endforeach
                 </tbody>

@@ -11,7 +11,16 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = [];
+        return view('admin.ferias.index');
+    }
+
+    public function store(Request $request){
+    	Event::create($request->all());
+    	return redirect('ferias');
+    }
+
+    public function mapa_ferias(){
+       $events = [];
         $data = Event::all();
         if($data->count()) {
             foreach ($data as $key => $value) {
@@ -22,19 +31,15 @@ class EventController extends Controller
                     new \DateTime($value->end_date.' +1 day'),
                     null,
                     // Add color and link on event
-	                [
-	                    'color' => '#f05050',
-	                    'url' => 'pass here url and any route',
-	                ]
+                    [
+                        'color' => '#f05050',
+                        'url' => 'pass here url and any route',
+                    ]
                 );
             }
         }
         $calendar = Calendar::addEvents($events);
-        return view('Admin.fullcalender', compact('calendar'));
-    }
-
-    public function store(Request $request){
-    	Event::create($request->all());
-    	return redirect('events');
+        return view('Admin.ferias.fullcalender', compact('calendar'));
+        
     }
 }

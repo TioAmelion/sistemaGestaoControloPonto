@@ -26,7 +26,8 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading "><a href="#addEmployeeModal" data-toggle="modal" class="btn btn-primary nav-link active" role="button">Add Férias</a>
-                    <a href="#Feriados" data-toggle="modal" class="btn btn-primary nav-link active" role="button">Ver feriados</a>
+                    <a href="#Feriados" data-toggle="modal" class="btn btn-primary nav-link active" role="button">Ver Feriados</a>
+                    <a href="{{route('ferias')}}" class="btn btn-primary nav-link active" role="button">Ver mapa de Férias</a>
                     <a href="{{route('inicio')}}" class="btn btn-primary nav-link active" role="button">Voltar</a>
                 </div>
                 </div>
@@ -37,24 +38,6 @@
         </div>
     </div>
 </div>
-<!-- <br><br>
-<div class="col-xs-10 col-xs-offset-1" >
-    <div class="card col-xs-6" style="right: -140px">
-                 {!! $calendar->calendar() !!}
-                    {!! $calendar->script() !!}
-                  <div class="card-body p-0">
-                    {!! $calendar->calendar() !!}
-                    {!! $calendar->script() !!} -->
-
-                <!--   <img src='{{asset("assests/$tema/dist/img/1875980.jpg")}}'>
-                  </div>
-                 
-                </div>
-
-                <div>
-                  <img src='{{asset("assests/$tema/dist/img/ff.jpg")}}'>
-                </div>
-                </div> -->
 
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">

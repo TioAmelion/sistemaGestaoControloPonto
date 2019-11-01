@@ -25,9 +25,15 @@
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
                         <td>{!! QrCode::size(250)->generate($d->id); !!}</td>
+                        @can('super_admin')
                         <th style="font-size:16px">
                             <a class="btn btn-primary text-white float-left" onclick="myFunction()" href="#" role="button">Imprimir</a>
                         </th>
+                        @else
+                        <th style="font-size:16px">
+                            <a class="btn btn-primary text-white float-left" href="#" role="button">Sem permissão para imprimir</a>
+                        </th>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

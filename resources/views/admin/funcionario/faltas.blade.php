@@ -28,9 +28,15 @@
 						<td>{{$d->data}}</td>
                         <td>{{$d->data}}</td>
 						<td> 
+                            @can('supervisor')
                             <a href="{{route('justificativo', ['id' => $d->id])}}" class="btn btn-block  text-white btn-danger view-data">
                                 <i class="far fa-user"></i>Justificar Falta
                             </a>
+                            @else
+                            <a href="#" class="btn btn-block  text-white btn-danger view-data">
+                                <i class="far fa-user"></i>Sem permissão
+                            </a>
+                            @endcan
 						</td>
 						
                     </tr>

@@ -18,8 +18,8 @@
                     <tr>
                         <th>#</th>
                         <th style="font-size:16px">Nome</th>
-                        <th style="font-size:16px; right: 100px">Status</th>
-                        <th style="font-size:16px">Local de trabalho</th>
+                        <th style="font-size:16px; right: 100px">Local de trabalho</th>
+                        <th style="font-size:16px">Acção</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +28,8 @@
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
                         <td>{{$d->local_trabalho}}</td>
+
+                        @can('supervisor_talatona')
                         <td>
                             <a href="{{route('salvar.ponto', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
                                 <i class="far fa-clock"></i>Marcar Ponto
@@ -36,7 +38,13 @@
                                 <i class="far fa-user"></i>Marcar Falta
                             </a>
                         </td>
-                        
+                        @else
+                        <td>
+                            <a href="#" class="btn btn-block  text-white btn-primary view-data">
+                                Sem Permissão
+                            </a>
+                        </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

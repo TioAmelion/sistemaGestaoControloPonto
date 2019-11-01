@@ -8,9 +8,15 @@
                     <div class="col-sm-5">
 						<h2>Imprimir <b>Ponto Mensal</b></h2>
 					</div>
+                    @can('super_admin')
 					<div class="col-sm-7">
 						<a href="{{route('export')}}" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Exportar Para Excel</span></a>						
 					</div>
+                    @else
+                    <div class="col-sm-7">
+                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Sem Permissão para imprimir</span></a>                       
+                    </div>
+                    @endcan
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -21,7 +27,6 @@
                         <th style="font-size:16px; right: 100px">Nº Presenças</th>
                          <th style="font-size:16px; right: 100px">Nº Faltas</th>
                          <th style="font-size:16px; right: 100px">Salario</th>
-						<th style="font-size:16px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,11 +37,6 @@
 						<td>{{$d->presencas}}</td>
                         <td>{{$d->ausencias}}</td>
                         <td>{{$d->salario}}</td>
-						<td>
-							<!--a href="{{route('export')}}" class="btn btn-block  text-white btn-primary view-data">
-								<i class="far fa-clock"></i>
-							</a-->
-						</td>
 						
                     </tr>
                     @endforeach

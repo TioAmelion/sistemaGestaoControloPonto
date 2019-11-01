@@ -11,9 +11,7 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+//
 
 //Route::get('/permissao', 'PermissaoController@index');
 
@@ -28,7 +26,14 @@
 //Route::group(['prefix' => 'admin', 'namespace'=> 'Admin'], function(){
 	
 //});
+Route::get('/', function () {
+	return view('welcome');
+});
 Auth::routes();
+
+Route::get('usuarios', 'Auth\UsuarioController@index')->name('usuarios');
+Route::get('usuarios/{id}/editar', 'Auth\UsuarioController@edit')->name('usuarios_edit');
+Route::put('usuarios_update/{id}', 'Auth\UsuarioController@update')->name('usuarios_update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('inicio', 'Admin\InicioController@index')->name('inicio');
@@ -77,4 +82,5 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	
 
 	Route::get('events', 'Admin\EventController@index')->name('events');
+	Route::get('ferias', 'Admin\EventController@mapa_ferias')->name('ferias');
 	Route::post('add_events', 'Admin\EventController@store')->name('add_events');
