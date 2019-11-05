@@ -8,6 +8,7 @@ use App\Models\Admin\Funcionario;
 use App\Models\Admin\RegistrarPonto;
 use App\Models\Admin\Faltas;
 use App\Exports\PontoExport;
+use App\Exports\PontoIndividualExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrarPontoController extends Controller
@@ -43,14 +44,6 @@ class RegistrarPontoController extends Controller
         FROM funcionario f WHERE EXISTS (SELECT r.func_id FROM registro r WHERE r.func_id = f.id)');
 
         return view('admin.ponto.imprimir', compact('dados', $dados));
-    }
-
-    public function ponto_individual($id){
-
-         $filtro = new RegistrarPonto();
-         $dados = $dados->ponto_individual($id);
-         dd($dados);
-         //return Excel::download(new ponto_individual_Export(), 'ponto.xlsx');
     }
 
     public function export() 
@@ -176,9 +169,8 @@ class RegistrarPontoController extends Controller
      */
     public function show($id)
     {
-        $dados = funcionario::find($id);
-        //return view('admin.ponto.index')->with('dados', $dados);
-         return response()->json(['dados' => $dados]);
+        $d = funcionario::find($id);
+        return view('admin.ponto.folhaIndividual')->with('dados', $d);
     }
 
     /**

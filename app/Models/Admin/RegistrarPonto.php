@@ -22,9 +22,9 @@ class RegistrarPonto extends Model
     	return $filtro;
     }
 
-    public function ponto_individual(){
+    public function ponto_individual($id){
 
-        $filtro = DB::select("SELECT * registro WHERE func_id = '$id' ");
+        $filtro = DB::select("SELECT r.func_id as Numero_funcionario , r.empresa as Empresa, f.nome, r.data, r.entrada as Hora_Entrada, r.saida_a as Saída_Almoço, r.entrada_a as Entrada_Almoço, r.saida as Fim_expediente FROM registro r, funcionario f WHERE r.func_id = '$id' AND f.id = '$id' ");
         return $filtro;
     }
 

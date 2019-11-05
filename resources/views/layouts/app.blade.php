@@ -82,9 +82,9 @@
                 </div>
             </div>
         </nav>
-      <img src='{{asset("assests/$tema/welcome.jpg")}}'>
+      <!-- img src='{{asset("assests/$tema/welcome.jpg")}}'-->
       <br><br><br><br>
-      <div class="font-weight-bold p-3 mb-5 bg-white text-dark text-center">
+    <!--   <div class="font-weight-bold p-3 mb-5 bg-white text-dark text-center">
             <p class="card-text font-weight-bold display-4 text-primary">Minimizando o tempo e esforço do R.H</p>
 
             <center>
@@ -101,7 +101,7 @@
 </div>
     </div>
       </center>
-      </div>
+      </div> -->
       
         <main class="py-4">
             @yield('content')

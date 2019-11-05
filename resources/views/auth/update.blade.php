@@ -25,11 +25,18 @@
                   <label for="exampleInputEmail1"></label>
                     <input type="text" class="form-control" name="name" placeholder="Nome completo" value="{{$dados->name}}">
                 </div>
-                <!-- /.form-group -->
+                <!-- /.form-group >
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
                     <input type="text" class="form-control" name="role" placeholder="adicione uma permissão"  value="{{$dados->role}}">
-                </div>
+                </div>-->
+                <select class="form-control" name="role">
+                <option>Selecione uma permissão</option>
+                  <option value="super_admin">Super Administrador</option>
+                  <option value="admin">Administrador</option>
+                  <option value="supervisor_benfica">Supervisor Benfica</option>
+                  <option value="supervisor_talatona">Supervisor Talatona</option>
+              </select>
               </div>
               <div class="col-md-1">
               	<div class="form-group">

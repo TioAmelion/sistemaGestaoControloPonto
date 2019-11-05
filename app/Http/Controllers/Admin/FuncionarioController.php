@@ -61,6 +61,7 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
+        $image = $request->file('imagem');
          $validator = Validator::make($request->all(),
 
          [
@@ -86,20 +87,20 @@ class FuncionarioController extends Controller
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images'), $new_name);
 
-        // $requestt = array(
-        //     'nome'       =>   $request->nome,
-        //     'num_bi'        =>   $request->num_bi,
-        //     'imagem'            =>   $new_name,
-        //     'local_trabalho'            =>  $request->local_trabalho,
-        //     'departamento'            =>   $request->departamento,
-        //     'faixa_salarial'            =>   $request->faixa_salarial,
-        //     'funcao'            =>   $request->funcao,
-        //     'genero'            =>   $request->genero,
-        //     'telefone'            =>   $request->telefone
-        // );
+        $request = array(
+            'nome'       =>   $request->nome,
+            'num_bi'        =>   $request->num_bi,
+            'imagem'            =>   $new_name,
+            'local_trabalho'            =>  $request->local_trabalho,
+            'departamento'            =>   $request->departamento,
+            'faixa_salarial'            =>   $request->faixa_salarial,
+            'funcao'            =>   $request->funcao,
+            'genero'            =>   $request->genero,
+            'telefone'            =>   $request->telefone
+        );
 
     //     dd($requestt);
-         Funcionario::create($request->all());
+         Funcionario::create($request);
          return redirect('funcionario')->with('mensagem', 'Funcionario salvo com sucesso');
 
     }

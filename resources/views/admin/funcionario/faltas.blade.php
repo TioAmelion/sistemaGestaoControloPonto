@@ -28,7 +28,7 @@
 						<td>{{$d->data}}</td>
                         <td>{{$d->data}}</td>
 						<td> 
-                            @can('supervisor')
+                            @can('supervisor_benfica')
                             <a href="{{route('justificativo', ['id' => $d->id])}}" class="btn btn-block  text-white btn-danger view-data">
                                 <i class="far fa-user"></i>Justificar Falta
                             </a>

@@ -26,7 +26,7 @@
                 @foreach($dados as $d)
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
-                        <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
+                        <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
 						<td>{{$d->local_trabalho}}</td>
                         @can('supervisor_benfica')
 						<td>

@@ -31,7 +31,7 @@
 
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <!-- <table class="table table-striped table-hover">
                 <thead>
                     <tr>
 						<th>
@@ -80,8 +80,8 @@
                     </tr>
                      @endforeach
                 </tbody>
-            </table>
-			<div class="clearfix">
+            </table> -->
+			<!-- <div class="clearfix">
                 <div class="hint-text">Mostrando <b>5</b> de <b>25</b> entrada</div>
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -92,36 +92,15 @@
                     <li class="page-item"><a href="#" class="page-link">5</a></li>
                     <li class="page-item"><a href="#" class="page-link">Next</a></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
-    <div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="icon-box">
-					<i class="material-icons">&#xE5CD;</i>
-				</div>				
-				<h4 class="modal-title">Você tem certeza?</h4>	
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<p>Deseja realmente excluir esses registros? Este processo não pode ser desfeito.</p>
-			</div>
-			<form action="#" method="POST">
-				<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-				<button type="submit" class="btn btn-danger">Apagar</button>
-			</form>
-			</div>
-		</div>
-	</div>
 </div>
 	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
+	<!-- <div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
-			<div class="modal-content">
-				<form role="form" action="{{route('salvar_func')}}" method="POST">
+			<div class="modal-content"> -->
+				<form role="form" enctype="multipart/form-data" action="{{route('salvar_func')}}" method="POST">
           		@csrf
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Employee</h4>
@@ -203,9 +182,9 @@
 					</div>
 				
     </form>
-			</div>
+			<!-- </div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Edit Modal HTML -->
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">

@@ -39,18 +39,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('inicio', 'Admin\InicioController@index')->name('inicio');
 Route::get('pontoFacial', 'Admin\InicioController@index1')->name('pontoFacial');
 
-Route::get('permissao', 'PermissaoController@index')->name('permissao');
-	Route::get('permissao/create', 'PermissaoController@create')->name('criar_permissao');
-	Route::get('menu', 'MenuController@index')->name('menu');
-	Route::get('menu/criar', 'MenuController@create')->name('criar_menu');
-	Route::post('menu', 'MenuController@store')->name('salvar');
+	//Route::get('permissao', 'PermissaoController@index')->name('permissao');
+	//Route::get('permissao/create', 'PermissaoController@create')->name('criar_permissao');
+	//Route::get('menu', 'MenuController@index')->name('menu');
+	//Route::get('menu/criar', 'MenuController@create')->name('criar_menu');
+	//Route::post('menu', 'MenuController@store')->name('salvar');
 
-	Route::get('rol', 'RolController@index')->name('rol');
-	Route::get('rol/criar', 'RolController@create')->name('criar_rol');
-	Route::post('rol', 'RolController@store')->name('salvar_rol');
-	Route::get('rol/{id}/editar', 'RolController@edit')->name('editar_rol');
-	Route::put('rol/{id}', 'RolController@update')->name('atualizar_rol');
-	Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
+	//Route::get('rol', 'RolController@index')->name('rol');
+	//Route::get('rol/criar', 'RolController@create')->name('criar_rol');
+	//Route::post('rol', 'RolController@store')->name('salvar_rol');
+	//Route::get('rol/{id}/editar', 'RolController@edit')->name('editar_rol');
+	//Route::put('rol/{id}', 'RolController@update')->name('atualizar_rol');
+	//Route::delete('rol/{id}', 'RolController@destroy')->name('eliminar_rol');
 
 	/*Registar funcionario */
 	Route::get('funcionario', 'Admin\FuncionarioController@index')->name('funcionario');
@@ -77,8 +77,8 @@ Route::get('permissao', 'PermissaoController@index')->name('permissao');
 	Route::get('export', 'Admin\RegistrarPontoController@export')->name('export');
 
 	/* Imprimir ponto Individual */
-	Route::get('imprimir_ponto/{$id}', 'Admin\RegistrarPontoController@ponto_individual')->name('imprimir_ponto');
-	Route::get('export_individual', 'Admin\RegistrarPontoController@export')->name('export_p');
+	Route::get('imprimir_ponto', 'Admin\PontoIndividualController@ponto_individual')->name('imprimir_ponto');
+	Route::get('export_individual/{id}', 'Admin\PontoIndividualController@imprimir')->name('export_individual');
 	
 
 	Route::get('events', 'Admin\EventController@index')->name('events');

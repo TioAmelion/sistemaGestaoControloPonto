@@ -72,7 +72,7 @@
             <a href="{{route('events')}}" class="nav-link">
               <i class="fas fa-users"></i>
               <p>
-                Plano de férias
+                Plano de Férias
               </p>
             </a>
           </li>
@@ -88,13 +88,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Justificar atraso</p>
+                  <p>Justificar Atraso</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('justificar_faltas')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Justificar falta</p>
+                  <p>Justificar Falta</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -113,13 +113,13 @@
               <li class="nav-item">
                 <a href="{{route('imprimir')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Imprimir Ponto Benfica</p>
+                  <p>Imprimir Folha de Ponto</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('imprimir_ponto')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Imprimir Ponto Talatona</p>
+                  <p>Imprimir Folha de P. Individual</p>
                 </a>
               </li>
               <li class="nav-item">
