@@ -68,10 +68,21 @@
                         </div>
                     </div>
                 </div>
+                @can('super_admin')
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-success" value="Add">
                 </div>
+                @elsecan('admin')
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Add">
+                </div>
+                @else('')
+                <div class="modal-footer">
+                  <label>Sem permissao</label>
+                </div>
+                @endcan
             </form>
             </div>
         </div>

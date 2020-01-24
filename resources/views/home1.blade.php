@@ -20,7 +20,7 @@
                     <ul class="users-list clearfix">
                     	@foreach($dados as $d)
                       <li>
-                        <img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' alt="User Image">
+                        <img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" alt="User Image">
                         <a class="p-3 m-1" href="#">{{$d->nome}}</a>
                         <span class="users-list-date">{{$d->data}}</span>
                       </li>
@@ -52,7 +52,7 @@
                     <ul class="users-list clearfix">
                     	@foreach($var as $v)
                       <li>
-                        <img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' alt="User Image">
+                        <img src="{{ URL::to('/') }}/images/{{ $v->imagem}}" alt="User Image">
                         <a class="p-3 m-1 " href="#">{{$v->nome}}</a>
                         <span class="users-list-date">{{$v->data}}</span>
                       </li>

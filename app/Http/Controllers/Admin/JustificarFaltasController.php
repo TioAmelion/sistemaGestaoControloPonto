@@ -16,7 +16,10 @@ class JustificarFaltasController extends Controller
      */
     public function index()
     {
-        $dados = \DB::select('SELECT f.id, r.nome, f.data, f.imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data = CURRENT_DATE ');
+        $data_inicio = date('Y-m-01');
+        $data_fim   = date('Y-m-31');
+
+        $dados = \DB::select("SELECT f.id, r.nome, f.data, f.imagem FROM falta f, funcionario r WHERE f.func_id=r.id AND data BETWEEN '$data_inicio' AND '$data_fim' AND f.justificar IS NULL ");
         return view('admin.funcionario.faltas', compact('dados', $dados));
     } //BETWEEN "2019-10-01" AND "2019-10-30"
 

@@ -11,27 +11,9 @@ use App\Providers\AuthServiceProvider;
 
 class FuncionarioController extends Controller
 {
-    //use AuthenticatesUsers;
-
-    //protected $redirectTo = '/home';
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $dados = Funcionario::all();
+        $dados = Funcionario::orderBy('nome', 'asc')->get();
         return view('admin.funcionario.index', compact('dados'));
     }
 
@@ -51,8 +33,6 @@ class FuncionarioController extends Controller
         return view('admin.funcionario.create');
     }
 
-    
-
     /**
      * Store a newly created resource in storage.
      *
@@ -64,44 +44,40 @@ class FuncionarioController extends Controller
         $image = $request->file('imagem');
          $validator = Validator::make($request->all(),
 
-         [
+        [
             'nome'              =>  'required',
-            'num_bi'            =>  'required', 
-            'imagem'            =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'local_trabalho'    =>  'required',
-            'departamento'      =>  'required',
-            'faixa_salarial'    =>  'required|numeric|between:0,99.99',
+            //'num_bi'            =>  'required', 
+            //'imagem'            =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            //'local_trabalho'    =>  'required',
+            //'departamento'      =>  'required',
+            //'faixa_salarial'    =>  'required|numeric|between:0,99.99',
             'funcao'            =>  'required',
-            'genero'            =>  'required',
-            'telefone'          =>  'required',
+            //'genero'            =>  'required',
+            //'telefone'          =>  'required',
         ]
     );
-
-         if ($validator->fails()){
-            return back()
-                ->withErrors($validator)
-                ->withInput();
+        if ($validator->fails()){
+            return back()->withErrors($validator)->withInput();
         }
 
-        $image = $request->file('imagem');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
+        //$image = $request->file('imagem');
+        //$new_name = rand() . '.' . $image->getClientOriginalExtension();
+        //$image->move(public_path('images'), $new_name);
 
         $request = array(
             'nome'       =>   $request->nome,
-            'num_bi'        =>   $request->num_bi,
-            'imagem'            =>   $new_name,
-            'local_trabalho'            =>  $request->local_trabalho,
+            //'num_bi'        =>   $request->num_bi,
+            //'imagem'            =>   $new_name,
+            //'local_trabalho'            =>  $request->local_trabalho,
             'departamento'            =>   $request->departamento,
-            'faixa_salarial'            =>   $request->faixa_salarial,
+            //'faixa_salarial'            =>   $request->faixa_salarial,
             'funcao'            =>   $request->funcao,
-            'genero'            =>   $request->genero,
-            'telefone'            =>   $request->telefone
+            //'genero'            =>   $request->genero,
+            //'telefone'            =>   $request->telefone
         );
 
-    //     dd($requestt);
-         Funcionario::create($request);
-         return redirect('funcionario')->with('mensagem', 'Funcionario salvo com sucesso');
+        Funcionario::create($request);
+        return redirect('funcionario')->with('mensagem', 'Funcionario salvo com sucesso');
 
     }
 
@@ -126,9 +102,7 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        //$dados = Rol::findOrFail($id); |se o id não existe mostra a pagina de erro 404
-        $dados = funcionario::find($id); // |se o id existe mostra null
-        //dd($dados);
+        $dados = funcionario::find($id);
         return view('admin.funcionario.update', compact('dados'));
     }
 
@@ -153,7 +127,7 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-         if(funcionario::destroy($id)){
+        if(funcionario::destroy($id)){
             return redirect('funcionario');
         }else{
             abort(404);

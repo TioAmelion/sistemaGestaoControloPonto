@@ -6,7 +6,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Marcar <b>Ponto <span class="text-warning" id="demo"></span></b></h2>
+						<h2>Imprimir Registro<b> Individual</b></h2>
 					</div>
 					<div class="col-sm-7">
 						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
@@ -28,10 +28,10 @@
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
 						<td>{{$d->local_trabalho}}</td>
-                        @can('supervisor_benfica')
+                        @can('super_admin')
 						<td>
 							<a href="{{route('export_individual', $d->id)}}" class="btn btn-block  text-white btn-primary view-data">
-								<i class="fas fa-print"></i>Imprimir Ponto
+								<i class="fas fa-print"></i>Imprimir folha
 							</a>
 						</td>
                         @else
@@ -63,17 +63,5 @@
 
         </div>
     </div> 
-    <script type="text/javascript">
-        var myVar = setInterval(myTimer ,1000);
-        function myTimer() {
-            var d = new Date(), displayDate;
-           if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-              displayDate = d.toLocaleTimeString('pt-BR');
-           } else {
-              displayDate = d.toLocaleTimeString('pt-BR', {timeZone: 'Africa/luanda'});
-           }
-              document.getElementById("demo").innerHTML = displayDate;
-        }
-    </script>
 @endsection
 

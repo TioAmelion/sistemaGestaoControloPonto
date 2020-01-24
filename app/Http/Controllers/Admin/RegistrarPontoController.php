@@ -13,10 +13,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrarPontoController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +33,14 @@ class RegistrarPontoController extends Controller
 
     public function imprimir(){
 
-        $dados = \DB::select('SELECT f.nome, f.id, f.imagem,
-        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "presente") As presencas, 
-        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "ausente")  as ausencias,
-        (SELECT f.faixa_salarial-COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "ausente")  as salario
-        FROM funcionario f WHERE EXISTS (SELECT r.func_id FROM registro r WHERE r.func_id = f.id)');
+        $data_inicio = date('Y-m-01');
+        $data_fim   = date('Y-m-31');
+
+        $dados = \DB::select("SELECT f.nome, f.id, f.imagem,
+        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'presente' AND data BETWEEN '$data_inicio' AND '$data_fim') As presencas, 
+        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'ausente' AND data BETWEEN '$data_inicio' AND '$data_fim')  as ausencias,
+        (SELECT f.faixa_salarial-COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'ausente' AND data BETWEEN '$data_inicio' AND '$data_fim')  as salario
+        FROM funcionario f WHERE EXISTS (SELECT r.func_id FROM registro r WHERE r.func_id = f.id)");
 
         return view('admin.ponto.imprimir', compact('dados', $dados));
     }
@@ -56,10 +55,7 @@ class RegistrarPontoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        // authtoken  1PPv8t3L6ZulH5GMM6k2UEJM4jr_7CiUFac5MNqbS9dN25PPY
-    }
+    public function create(){}
 
     /**
      * Store a newly created resource in storage.
@@ -179,10 +175,7 @@ class RegistrarPontoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        
-    }
+    public function edit($id){}
 
     /**
      * Update the specified resource in storage.
@@ -193,11 +186,11 @@ class RegistrarPontoController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $request = array(
-                'entrada' => date('G:i:s'),
-                'data' => date('d-m-y'),
-                'func_id' => $id
-                );
+        $request = array(
+            'entrada' => date('G:i:s'),
+            'data' => date('d-m-y'),
+            'func_id' => $id
+        );
 
         RegistrarPonto::findOrFail($id)->update($request->all());
         return redirect('admin/marcar_ponto')->with('mensagem', 'Datos atualizados');
@@ -209,25 +202,6 @@ class RegistrarPontoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        
-    }
-
-    //$verif_id = RegistrarPonto::where('func_id', $id)->get();
-        // $status = "presente";
-        //     if(count($verif_id) == 0){
-        //         $request = array(
-        //         'entrada' => date('G:i:s'),
-        //         'data' => date('Y-m-d'),
-        //         'func_id' => $id,
-        //         'status' => $status,
-        //         'saida_a' => "12:00",
-        //         'entrada_a' => "13:00",
-        //         'saida' => "17:00"
-        //         );
-        //         RegistrarPonto::create($request);
-        //         return redirect('marcar.ponto');
-        //     }else{
-        //     }
+    public function destroy($id){}
+    
 }

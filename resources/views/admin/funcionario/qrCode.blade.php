@@ -6,17 +6,17 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-            <h2>Codigo Qr <b>Funcionarios <span class="text-warning" id="demo"></span></b></h2>
+            <h2>Codigo Qr <b>Funcionarios <span class="text-warning" id="demo"></span></b><span onclick="cont()">Imprimir</span></h2>
           </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <div id="print" class="conteudo">
+            <table class="table table-striped table-hover" >
                 <thead>
                     <tr>
                         <th>#</th>
                         <th style="font-size:16px;">Nome</th>
                         <th style="font-size:16px">Codigo Qr</th>
-                        <th style="font-size:16px">Acção</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,35 +24,27 @@
                     <tr>
                         <td style="font-size:16px">{{$d->id}}</td>
                         <td><a href="#"><img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
-                        <td>{!! QrCode::size(250)->generate($d->id); !!}</td>
-                        @can('super_admin')
-                        <th style="font-size:16px">
-                            <a class="btn btn-primary text-white float-left" onclick="myFunction()" href="#" role="button">Imprimir</a>
-                        </th>
-                        @else
-                        <th style="font-size:16px">
-                            <a class="btn btn-primary text-white float-left" href="#" role="button">Sem permissão para imprimir</a>
-                        </th>
-                        @endcan
+                        <td><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(300)->generate($d->id)); !!} ">
+       <br></td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </div> 
+        </div>
+    </div>
+
+<script>
+function cont(){
+   var conteudo = document.getElementById('print').innerHTML;
+   tela_impressao = window.open('about:blank');
+   tela_impressao.document.write(conteudo);
+   tela_impressao.window.print();
+   tela_impressao.window.close();
+}
+</script>
     <script type="text/javascript">
-        var myVar = setInterval(myTimer ,1000);
-        function myTimer() {
-            var d = new Date(), displayDate;
-           if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-              displayDate = d.toLocaleTimeString('pt-BR');
-           } else {
-              displayDate = d.toLocaleTimeString('pt-BR', {timeZone: 'Africa/luanda'});
-           }
-              document.getElementById("demo").innerHTML = displayDate;
-        }
-
-
         function myFunction() {
           window.print();
         }

@@ -12,19 +12,33 @@ class RegistrarPonto extends Model
     //protected $guarded = ['id'];
 
     public function dados(){
-    	$filtro = DB::select('SELECT f.nome, f.id,
+        $data_inicio = date('Y-m-01');
+        $data_fim   = date('Y-m-31');
+        $status = "presente";
+        $status1 = "ausente";
+
+    	$filtro = DB::select("SELECT f.nome, f.id,
         (SELECT DISTINCT r.empresa FROM registro r WHERE r.func_id = f.id) As empresa,
-        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "presente") As presencas, 
-        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "ausente")  as ausencias,
-        (SELECT f.faixa_salarial-COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = "ausente")  as salario
-        FROM funcionario f WHERE EXISTS (SELECT r.func_id FROM registro r WHERE r.func_id = f.id)');
+        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'presente' AND data BETWEEN '$data_inicio' AND '$data_fim') as presencas, 
+        (SELECT COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'ausente' AND data BETWEEN '$data_inicio' AND '$data_fim')  as ausencias
+        FROM funcionario f WHERE EXISTS (SELECT r.func_id FROM registro r WHERE r.func_id = f.id)");
 
     	return $filtro;
+
+        //(SELECT f.faixa_salarial-COUNT(func_id) FROM registro r WHERE r.func_id = f.id AND status = 'ausente' AND data BETWEEN '$data_inicio' AND '$data_fim')  as salario
     }
 
     public function ponto_individual($id){
 
-        $filtro = DB::select("SELECT r.func_id as Numero_funcionario , r.empresa as Empresa, f.nome, r.data, r.entrada as Hora_Entrada, r.saida_a as Saída_Almoço, r.entrada_a as Entrada_Almoço, r.saida as Fim_expediente FROM registro r, funcionario f WHERE r.func_id = '$id' AND f.id = '$id' ");
+        $data_inicio = date('Y-m-01');
+        $mes  = date('m');
+        $ano  = date('Y');
+        $ultimo_dia = date("t", mktime(0,0,0, $mes, '01', $ano));
+        $data_fim   = date('Y-m-d');
+
+        //$filtro = RegistrarPonto::all()->where('func_id', $id)->whereBetween('data', [$data_inicio, $data_fim]);
+        $filtro = RegistrarPonto::where('registro.func_id', $id)->join('funcionario', 'registro.func_id', '=', 'funcionario.id')->whereBetween('data', [$data_inicio, $data_fim])->get();
+
         return $filtro;
     }
 

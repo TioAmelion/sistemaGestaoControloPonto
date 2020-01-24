@@ -34,7 +34,7 @@
                         <a class="navbar-brand" href="{{ url('/inicio') }}">
                     @yield('titulo','Sistema de Ponto') 
                 </a>
-                 <a class="navbar-brand" href="{{ url('pontoFacial') }}">
+                 <a class="navbar-brand" href="{{ url('Marcar_ponto') }}">
                     @yield('titulo','Ponto com Reconhecimento Facial') 
                 </a>
                 @endguest

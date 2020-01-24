@@ -31,7 +31,7 @@
 
                 </div>
             </div>
-            <!-- <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
 						<th>
@@ -80,26 +80,14 @@
                     </tr>
                      @endforeach
                 </tbody>
-            </table> -->
-			<!-- <div class="clearfix">
-                <div class="hint-text">Mostrando <b>5</b> de <b>25</b> entrada</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div> -->
+            </table>
         </div>
     </div>
 </div>
 	<!-- Edit Modal HTML -->
-	<!-- <div id="addEmployeeModal" class="modal fade">
+	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
-			<div class="modal-content"> -->
+			<div class="modal-content">
 				<form role="form" enctype="multipart/form-data" action="{{route('salvar_func')}}" method="POST">
           		@csrf
 					<div class="modal-header">						
@@ -116,7 +104,7 @@
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I"  required>
+                    <input type="text" class="form-control" name="num_bi" placeholder="Numero de B.I" >
                 </div>
               </div>
               <div class="col-md-6">
@@ -130,7 +118,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone" required>
+                    <input type="text" class="form-control" name="telefone" placeholder="Numero de telefone" >
                 </div>
               </div>
               <div class="col-md-6">
@@ -145,8 +133,11 @@
                   <label for="exampleFormControlSelect1"></label>
 					    <select class="form-control" name="funcao" >
 					    	<option>Selecione a funcão</option>
-					    	<option value="Técnico gestão documental">Técnico gestão documental</option>
-					      	<option value="Assistente técnico gestão documental">Assistente técnico gestão documental</option>
+					    	<option value="Técnico Gestão Documental">Técnico de Gestão Documental</option>
+					      	<option value="Assistente Técnico Gestão Documental">Assistente Técnico Gestão Documental</option>
+                  <option value="Assistente de Gestão Documental">Assistente de Gestão Documental</option>
+                  <option value="Supervisor de Gestão Documental">Supervisor de Gestão Documental</option>
+                  <option value="Assistente Analista de Suporte 1">Assistente Analista de Suporte 1</option>
 					    </select>
                 </div>
               </div>
@@ -159,15 +150,15 @@
 					        <option value="Acerco Talatona">Acervo Talatona</option>
 					    </select>
                 </div>
-                <div class="form-group">
+                <!--div class="form-group">
                  <label for="exampleInputPassword1"></label>
                     <input type="text" class="form-control" name="faixa_salarial" placeholder="salario" required>
-                </div>
+                </div-->
               </div>
               <div class="col-md-6">
               	<div class="form-group">
               		<div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagem" required>
+                        <input type="file" class="custom-file-input" name="imagem" >
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
               	</div>
@@ -182,9 +173,9 @@
 					</div>
 				
     </form>
-			<!-- </div>
+			</div>
 		</div>
-	</div> -->
+	</div>
 	<!-- Edit Modal HTML -->
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">

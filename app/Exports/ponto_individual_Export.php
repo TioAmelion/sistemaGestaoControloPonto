@@ -11,7 +11,10 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 
-class ponto_individual_Export implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+
+class ponto_individual_Export implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -19,15 +22,35 @@ class ponto_individual_Export implements FromCollection, WithHeadings, ShouldAut
     {
         return RegistrarPonto::all();
     }
-    */
-
-    public function collection()
+     public function collection()
     {
-    	$d = new RegistrarPonto();
+        $d = new RegistrarPonto();
         return collect($d->ponto_individual());
     }
+    */
 
-    public function headings(): array
+    public function pega_id($id){
+
+        session()->put('id', $id);
+        $dados = new RegistrarPonto();
+        $dados_func = $dados->ponto_individual($id);
+
+        return $dados_func;
+    }
+
+    public function view(): View
+    {
+        $dados = new ponto_individual_Export();
+        $dados_func = $dados->pega_id(session()->get('id'));
+
+        return view('admin.ponto.tabela', ['dados' => $dados_func]);
+    }
+
+
+
+   
+
+   /* public function headings(): array
     {
         return [
         	
@@ -50,5 +73,5 @@ class ponto_individual_Export implements FromCollection, WithHeadings, ShouldAut
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
             },
         ];
-    }
+    }*/
 }

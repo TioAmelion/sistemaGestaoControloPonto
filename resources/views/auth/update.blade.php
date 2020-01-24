@@ -32,7 +32,7 @@
                 </div>-->
                 <select class="form-control" name="role">
                 <option>Selecione uma permissão</option>
-                  <option value="super_admin">Super Administrador</option>
+                  <option value="super_admin">Administrador Master</option>
                   <option value="admin">Administrador</option>
                   <option value="supervisor_benfica">Supervisor Benfica</option>
                   <option value="supervisor_talatona">Supervisor Talatona</option>

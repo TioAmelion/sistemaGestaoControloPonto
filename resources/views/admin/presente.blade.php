@@ -22,9 +22,9 @@
                     <ul class="users-list clearfix">
                       @foreach($dados as $d)
                       <li>
-                        <img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' alt="User Image">
-                        <a class="p-3 m-1" href="#">{{$d->nome}}</a>
-                        <span class="users-list-date">{{$d->data}}</span>
+                        <img src="{{ URL::to('/') }}/images/{{ $d->imagem}}" alt="User Image">
+                        <span>{{$d->nome}}</span>
+                        <span>{{$d->data}}</span>
                         
                       </li>
                       @endforeach

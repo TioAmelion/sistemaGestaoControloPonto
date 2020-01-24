@@ -16,14 +16,14 @@ class CreateFuncionarioTable extends Migration
         Schema::create('funcionario', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome', 50);
-            $table->string('num_bi', 50);
-            $table->char('genero', 50);
-            $table->integer('telefone')->unsigned();
-            $table->string('departamento', 50);
+            $table->string('num_bi', 50)->nullable();
+            $table->char('genero', 50)->nullable();
+            $table->integer('telefone')->unsigned()->nullable();
+            $table->string('departamento', 50)->nullable();
             $table->string('funcao', 50);
-            $table->string('local_trabalho', 50);
-            $table->float('faixa_salarial', 8,2);
-            $table->string('imagem', 30);
+            $table->string('local_trabalho', 50)->nullable();
+            $table->float('faixa_salarial', 8,2)->nullable();
+            $table->string('imagem', 30)->nullable();
             $table->timestamps();
         });
     }

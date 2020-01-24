@@ -27,8 +27,6 @@ class PontoExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
         return collect($d->dados());
     }
 
-    
-
     public function headings(): array
     {
         return [
@@ -36,16 +34,7 @@ class PontoExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
         	'Numero funcionario',
         	'Empresa',
         	'Nº de Precenças',
-        	'Nº de Faltas',
-        	'Salario'
-            // '#',
-            // 'Numero funcionario',
-            // 'Data',
-            // 'H/Entrada',
-            // 'H/Saida Almoço',
-            // 'H/Regresso Almoço',
-            // 'H/Saida',
-            // 'Status'
+        	'Nº de Faltas'
         ];
     }
 

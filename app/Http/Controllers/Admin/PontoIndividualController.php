@@ -16,8 +16,7 @@ class PontoIndividualController extends Controller
 {
     public function ponto_individual(){
 
-    	$dados = funcionario::where('local_trabalho', 'Acervo Benfica')->get();
-
+        $dados = funcionario::all();
         return view('admin.ponto.folhaIndividual', compact('dados', $dados));
     }
 
@@ -26,16 +25,13 @@ class PontoIndividualController extends Controller
     	$d = new RegistrarPonto();
     	$dados = $d->ponto_individual($id);
 
-    	//$export = new ponto_individual_Export();
+    	$export = new ponto_individual_Export();
+    	$ex = $export->pega_id($id);
 
-    	//$ex = $export->collection($id);
-    	return Excel::download($dados, 'ponto.xlsx');
-    	//return view('admin.ponto.imprimirPonto', compact('dados'));
+    	return Excel::download(new ponto_individual_Export(), 'folha_salarial_individual.xlsx');
     }
 
     public function export($id){
-
-
-    	return Excel::download(new ponto_individual_Export(), 'ponto.xlsx');
+        return Excel::download(new ponto_individual_Export(), 'ponto.xlsx');
     }
 }

@@ -6,7 +6,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Imprimir <b>Ponto Mensal</b></h2>
+						<h2>Imprimir registro<b> Mensal</b></h2>
 					</div>
                     @can('super_admin')
 					<div class="col-sm-7">
@@ -26,7 +26,6 @@
                         <th style="font-size:16px">Nome</th>
                         <th style="font-size:16px; right: 100px">Nº Presenças</th>
                          <th style="font-size:16px; right: 100px">Nº Faltas</th>
-                         <th style="font-size:16px; right: 100px">Salario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,8 +35,6 @@
                         <td><a href="#"><img src='{{asset("assests/$tema/dist/img/".$d->imagem)}}' class="avatar" alt="Avatar" style="width: 70px; height: 70px">{{$d->nome}}</a></td>
 						<td>{{$d->presencas}}</td>
                         <td>{{$d->ausencias}}</td>
-                        <td>{{$d->salario}}</td>
-						
                     </tr>
                     @endforeach
                 </tbody>

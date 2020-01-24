@@ -20,10 +20,14 @@ class EventController extends Controller
     }
 
     public function mapa_ferias(){
-       $events = [];
+
+        $events = [];
         $data = Event::all();
+
         if($data->count()) {
+
             foreach ($data as $key => $value) {
+
                 $events[] = Calendar::event(
                     $value->nome,
                     true,
@@ -40,6 +44,5 @@ class EventController extends Controller
         }
         $calendar = Calendar::addEvents($events);
         return view('Admin.ferias.fullcalender', compact('calendar'));
-        
     }
 }
